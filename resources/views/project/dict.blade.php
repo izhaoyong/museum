@@ -439,8 +439,10 @@
 			</div>
 			
 			<div id="search">
-				<input class="box" type="text" title="在此输入搜索内容">
-				<input type="submit" class="button" title="搜索" value="GO">
+				<form action="/dict">
+					<input name="search" class="box" type="text" title="在此输入搜索内容">
+					<input type="submit" class="button" title="搜索" value="GO">
+				</form>
 			</div>
 			<!-- <button class="close-button fa fa-fw fa-close"></button> -->
 			

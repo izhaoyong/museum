@@ -488,8 +488,11 @@
 			</div>
 			
 			<div id="search">
-				<input class="box" type="text" title="在此输入搜索内容">
-				<input type="submit" class="button" title="搜索" value="GO">
+				<form action="/chant">
+					<input name="search" class="box" type="text" title="在此输入搜索内容">
+					<input type="submit" class="button" title="搜索" value="GO">
+				</form>
+
 			</div>
 			
 			<h1>吟诵</h1>
