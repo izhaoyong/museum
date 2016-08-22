@@ -44,7 +44,9 @@
 			?>
 			<li class="list-group-item">
 				<a href="ppt/{{$basename}}">
-					<?php echo $arr_paper[$filename.'']; ?>
+					<?php 
+						echo $arr_paper[$filename.'']; 
+					?>
 				</a> 
 			</li>
 
