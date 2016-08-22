@@ -266,7 +266,11 @@
 
 			.select{
 				margin: 0px !important;
-				padding-left: 40px !important;
+				padding-left: 10px !important;
+			}
+
+			#content>ul{
+				padding-left: 10px;
 			}
 		}
 
@@ -498,7 +502,7 @@
 				<h3>吟诵是指对北京话/普通话诗文吟诵研究，主要以视频的形式展示北京话吟诵和普通话诗文的吟诵资源。资源共分为四个部分：文献论文，北京话吟诵，其他方言吟诵及吟诵教学。</h3>
 			</div>
 
-			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold" onclick="location.href='chant.html';">详细介绍</button>
+			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold; background:transparent; border:none; " onclick="location.href='chant.html';">详细介绍>></button>
 		</div>
 
 		@if (!$search)

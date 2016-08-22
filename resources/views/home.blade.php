@@ -553,11 +553,7 @@
 		        $('.navigator button').each(function(){
 		        	$(this).css('visibility', 'visible');
 		        });
-
-		        $('class=[fa fa-close  glyphicon glyphicon-remove]').css('top', '2vh');
-		        $('class=[fa fa-chevron-left fa-2x pre').css('position', 'fixed');
-		        $('class=[fa fa-chevron-fight fa-2x next').css('position', 'fixed');
-		    }			
+		    }
 		})();
 	</script>
 @endsection

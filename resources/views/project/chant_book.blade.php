@@ -21,7 +21,7 @@
 		}
 	</style>
 
-	<div id="content" style="overflow-y:auto; height:100%;">
+	<div id="content" style="overflow-y:auto; height:100%; color: #333;">
 <!-- 		<ul class="nav nav-pills" style="margin: 20px 100px 0 ;">
 			<li {{ ($category == 'ancient' ? 'class=active' : '') }}><a href="{{ url('/chant/book?book=ancient')}}">北京话吟诵</a></li>
 			<li {{ ($category == 'modern' ? 'class=active' : '') }}><a href="{{url('/chant/book?book=modern')}}">普通话吟诵</a></li>

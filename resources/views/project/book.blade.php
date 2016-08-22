@@ -604,15 +604,13 @@
 			$(a).css('text-decoration','underline');
 			$(a).css('color','#B44242');
 		}
-	</script>
 
-	<script type="text/javascript">
-		
         $(function () {
             $("img.lazy").lazyload({
                 container: $("#container")
             });
         });
-    
+
 	</script>
+
 @endsection

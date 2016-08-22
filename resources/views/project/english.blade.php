@@ -87,6 +87,11 @@
 		.meta__misc--seperator li{
 			list-style: none;
 		}
+		
+		.meta__misc--seperator>p{
+			padding: 0 !important;
+			font-size: 1.15em !important;
+		}
 
 		.pic_photo{
 			max-height: 80vh;
@@ -411,7 +416,7 @@
 				</h3>
 			</div>
 
-			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold" onclick="location.href='foreign.html';">详细介绍</button>
+			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold; background: transparent; border: none; " onclick="location.href='foreign.html';">详细介绍>></button>
 		</div>
 
 		<div id="theGrid" class="main">
@@ -611,13 +616,13 @@
 			$(a).css('text-decoration','underline');
 			$(a).css('color','#B44242');
 		}
-	</script>
-	
-	<script type="text/javascript">
+
 		$(function () {
             $("img.lazy").lazyload({
                 container: $("#container")
             });
         });
+
 	</script>
+	
 @endsection

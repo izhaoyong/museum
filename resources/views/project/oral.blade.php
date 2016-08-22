@@ -319,6 +319,15 @@
 		nav>.pagination>.pagination{
 			margin: 0px;
 		}
+
+		.title--full{
+			font-size: 1.25em;
+		}
+
+		.picture{
+			display: flex;
+			justify-content: center;
+		}
 	</style>
 
     <div class="navbar navbar-inverse navbar-fixed-top menu">
@@ -617,13 +626,12 @@
 			$(a).css('text-decoration','underline');
 			$(a).css('color','#B44242');
 		}
-	</script>
-	
-	<script type="text/javascript">
+
 		$(function () {
             $("img.lazy").lazyload({
                 container: $("#container")
             });
         });
+
 	</script>
 @endsection

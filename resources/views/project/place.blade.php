@@ -314,11 +314,24 @@
 		nav>.pagination>.pagination{
 			margin: 0px;
 		}
+
+		.detailButton{
+			float:right; 
+			margin-right: 1em; 
+			padding:0.5em 2em; 
+			font-weight:bold; 
+			border:none; 
+			background:transparent;
+			color: #b44242;
+		}
+
+		.detailButton:hover{
+			color: #777;
+		}
 	</style>
 
     <div class="navbar navbar-inverse navbar-fixed-top menu">
      	<div class="container">
-
 	        <div class="navbar-header">
 	        	<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 		            <span class="sr-only">Toggle navigation</span>
@@ -406,7 +419,7 @@
 				<h3>项目介绍：本项目收集了北京市各个管辖区的地名，并对这些地名进行相应的历史典故介绍，同时附上每个地名对应的北京话发音和普通话发音。项目累计条目及照片2千余条。</h3>
 			</div>
 
-			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold" onclick="location.href='place.html';">详细介绍</button>
+			<button class="detailButton" onclick="location.href='place.html';">详细介绍>></button>
 
 		</div>
 
@@ -608,13 +621,18 @@
 			$(a).css('text-decoration','underline');
 			$(a).css('color','#B44242');
 		}
-	</script>
 
-	<script type="text/javascript">
         $(function () {
             $("img.lazy").lazyload({
                 container: $("#container")
             });
         });
+
+		if( "ontouchstart" in document ) {
+	        $('[class="fa fa-close  glyphicon glyphicon-remove"]').css('top', '2vh');
+	        $('[class="fa fa-chevron-left fa-2x pre"]').css('position', 'fixed');
+	        $('[class="fa fa-chevron-right fa-2x next"]').css('position', 'fixed');
+	    }
 	</script>
+
 @endsection

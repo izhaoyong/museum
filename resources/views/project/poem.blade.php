@@ -144,6 +144,7 @@
 		.pagination>.active>span,.pagination>.active>span:hover{
 			border-color: #B44242;
 			background-color: #B44242;
+			color: white !important;
 		}
 
 		span.fa-chevron-left:before{
@@ -399,7 +400,7 @@
 				<h3>清代御诗主要是对北京御制三山五园诗集数据库建设与研究，包括对北京皇家园林、名园、清代帝王御制三山五园诗集的数据收集和建设。展示的内容包括标题、诗作、注释、年代、作者、以及图片等</h3>
 			</div>
 
-			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold" onclick="location.href='poem.html';">详细介绍</button>
+			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold; background: transparent; border: none; " onclick="location.href='poem.html';">详细介绍>></button>
 		</div>
 
 		<div id="theGrid" class="main">
@@ -595,14 +596,11 @@
 			$(a).css('text-decoration','underline');
 			$(a).css('color','#B44242');
 		}
-	</script>
 
-	<script type="text/javascript">
 		$(function(){
             $("img.lazy").lazyload({
                 container: $("#container")
             });
 		});
 	</script>
-
 @endsection
