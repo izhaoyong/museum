@@ -11,7 +11,12 @@
 	<link rel="stylesheet" href="{{asset('/css/font-awesome.min.css')}}" />
 	<link rel="stylesheet" href="{{asset('/css/style2.css')}}" />
 	<link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" />
+
+	<link rel="stylesheet" href="{{asset('/css/style.css')}}" />
+	<script src="{{ asset('/js/slideout.js')}}"></script>
+
 	<script src="{{ asset('/js/modernizr.custom-places.js')}}"></script>
+
 	<style type="text/css">
 		.logo img{
 			width: 236px;
@@ -305,78 +310,190 @@
 		}
 	</style>
 
-    <div class="navbar navbar-inverse navbar-fixed-top menu">
-      <div class="container">
+	<style type="text/css">
+		@media screen and (min-width: 600px){
+			.btn-hamburger.js-slideout-toggle{
+				display: none;
+			}
+		}
 
-        <div class="navbar-header">
-        	<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-	            <span class="sr-only">Toggle navigation</span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-          	</button>
-        </div>
+		@media screen and (max-width: 600px){
+			.navbar-header{
+				display: none;
+			}
+		}
 
-        <div class="navbar-collapse collapse" role="navigation">
-			<ul class="nav navbar-nav">
-				<li>
-					<a  href="/">首页</a>
-				</li>
+		.fixed {
+			backface-visibility: hidden;
+			position: fixed;
+			z-index:2;
+			transition: transform 300ms ease;
+		}
 
-				<li>
-					<a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">
-						地名
-					</a>
-				</li>
+		.fixed-open {
+			transform: translate3d(140px, 0px, 0px);
+		}
 
-				<li>
-					<a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">
-						北京话文献
-					</a>
-				</li>
+		.btn-hamburger {
+			position: absolute;
+			border-radius: 4px;
+			border:1px solid black;
+			padding: 9px 10px;
+			width: 44px;
+			top: 8px;
+			bottom: 8px;
+			background: white;
+		}
 
-				<li>
-					<a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">
-						吟诵
-					</a>
-				</li>
+		.btn-hamburger span{
+		    display: block;
+		    width: 22px;
+		    height: 2px;
+		    border-radius: 1px;
+		    background-color: #B44242;
+		}
 
-				<li>
-					<a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">
-						清代御诗
-					</a>
-				</li>
+		.btn-hamburger .icon-bar+.icon-bar {
+			margin-top: 4px;
+		}
+	</style>
 
-				<li>
-					<a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">
-						土语词典
-					</a>
-				</li>
+    <nav id="menu" class="sideMenu slideout-menu">
+      <section class="menu-section">
+        <ul class="menu-section-list">
+					<li>
+						<a  href="/">首页</a>
+					</li>
 
-				<li>
-					<a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">
-						外语
-					</a>
-				</li>
+					<li>
+						<a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">
+							地名
+						</a>
+					</li>
 
-				<li>
-					<a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">
-						口传文化
-					</a>
-				</li>
+					<li>
+						<a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">
+							北京话文献
+						</a>
+					</li>
 
-				<li>
-					<a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">
-						话说老北京
-					</a>
-				</li>				
-			</ul>
-        </div>
-      </div>
+					<li>
+						<a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">
+							吟诵
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">
+							清代御诗
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">
+							土语词典
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">
+							外语
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">
+							口传文化
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">
+							话说老北京
+						</a>
+					</li>				
+        </ul>
+      </section>
+    </nav>
+
+    <div class="navbar navbar-inverse navbar-fixed-top menu header-hamburger fixed">
+      	<div class="container">
+	        <div class="navbar-header">
+	        	<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+	          	</button>
+	        </div>
+
+	        <div class="navbar-collapse collapse" role="navigation">
+				<ul class="nav navbar-nav">
+					<li>
+						<a  href="/">首页</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">
+							地名
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">
+							北京话文献
+						</a>
+					</li>
+
+					<li>
+						<a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">
+							吟诵
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">
+							清代御诗
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">
+							土语词典
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">
+							外语
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">
+							口传文化
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">
+							话说老北京
+						</a>
+					</li>				
+				</ul>
+	        </div>
+      	</div>
+
+      	<button class="btn-hamburger js-slideout-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+      	</button>
     </div>
 
 
-	<div class="wrapper">
+	<div class="wrapper" id="panel">
 		<div id="theSidebar" class="sidebar">
 			<div class="logo">
 				<a href="/">
@@ -468,8 +585,8 @@
 				</ul>
 			</nav>
 		</div>
-
 	</div>
+
 	<script type="text/javascript">
 		'use strict';
 		var position = -1;
@@ -607,6 +724,12 @@
 			$(a).css('color','#B44242');
 		}
 
+		if( "ontouchstart" in document ) {
+	        $('[class="fa fa-close  glyphicon glyphicon-remove"]').css('top', '2vh');
+	        $('[class="fa fa-chevron-left fa-2x pre"]').css('position', 'fixed');
+	        $('[class="fa fa-chevron-right fa-2x next"]').css('position', 'fixed');
+	    }
+	    
         $(function () {
             $("img.lazy").lazyload({
                 container: $("#container")
@@ -614,5 +737,33 @@
         });
 
 	</script>
+
+    <script type="text/javascript">
+		var slideout = new Slideout({
+			'panel': document.querySelector('#panel'),
+			'menu': document.querySelector('#menu'),
+			'padding': 140,
+			'tolerance': 70
+		});
+
+		slideout.disableTouch();
+		
+		document.querySelector('.js-slideout-toggle').addEventListener('touchstart', function() {
+			console.log("touch start");
+			slideout.toggle();
+		});
+
+		document.querySelector('.sideMenu').addEventListener('click', function(eve) {
+			if (eve.target.nodeName === 'A') { slideout.close(); }
+		});
+
+		slideout.on('beforeopen', function() {
+			document.querySelector('.fixed').classList.add('fixed-open');
+		});
+
+		slideout.on('beforeclose', function() {
+			document.querySelector('.fixed').classList.remove('fixed-open');
+		});
+    </script>
 
 @endsection

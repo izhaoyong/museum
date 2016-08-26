@@ -2,9 +2,9 @@
 
 @section('content')
 	@if ($search)
-		<div class="container">
+<!-- 		<div class="container">
 			<p>数据：<strong>{{$search."\t"}}</strong> 搜索到{{ count($places)}}条结果:</p>
-		</div>
+		</div> -->
 	@endif
 
 	<link rel="stylesheet" href="{{asset('/css/normalize-places.css')}}" />
@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="{{asset('/css/style2.css')}}" />
 	<link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" />
 	<script src="{{ asset('/js/modernizr.custom-places.js')}}"></script>
+	
+	<link rel="stylesheet" href="{{asset('/css/style.css')}}" />
+	<script src="{{ asset('/js/slideout.js')}}"></script>
 	
 	<style type="text/css">
 		.logo img{
@@ -330,7 +333,113 @@
 		}
 	</style>
 
-    <div class="navbar navbar-inverse navbar-fixed-top menu">
+	<style type="text/css">
+		@media screen and (min-width: 600px){
+			.btn-hamburger.js-slideout-toggle{
+				display: none;
+			}
+		}
+
+		@media screen and (max-width: 600px){
+			.navbar-header{
+				display: none;
+			}
+		}
+
+		.fixed {
+			backface-visibility: hidden;
+			position: fixed;
+			z-index:2;
+			transition: transform 300ms ease;
+		}
+
+		.fixed-open {
+			transform: translate3d(140px, 0px, 0px);
+		}
+
+		.btn-hamburger {
+			position: absolute;
+			border-radius: 4px;
+			border:1px solid black;
+			padding: 9px 10px;
+			width: 44px;
+			top: 8px;
+			bottom: 8px;
+			background: white;
+		}
+
+		.btn-hamburger span{
+		    display: block;
+		    width: 22px;
+		    height: 2px;
+		    border-radius: 1px;
+		    background-color: #B44242;
+		}
+
+		.btn-hamburger .icon-bar+.icon-bar {
+			margin-top: 4px;
+		}
+	</style>
+
+    <nav id="menu" class="sideMenu slideout-menu">
+      <section class="menu-section">
+        <ul class="menu-section-list">
+					<li>
+						<a  href="/">首页</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">
+							地名
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">
+							北京话文献
+						</a>
+					</li>
+
+					<li>
+						<a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">
+							吟诵
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">
+							清代御诗
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">
+							土语词典
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">
+							外语
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">
+							口传文化
+						</a>
+					</li>
+
+					<li>
+						<a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">
+							话说老北京
+						</a>
+					</li>				
+        </ul>
+      </section>
+    </nav>
+
+    <div class="navbar navbar-inverse navbar-fixed-top menu header-hamburger fixed">
      	<div class="container">
 	        <div class="navbar-header">
 	        	<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -397,9 +506,16 @@
 				</ul>
 	        </div>
       	</div>
+
+      	<button class="btn-hamburger js-slideout-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+      	</button>
     </div>
 
-	<div class="wrapper">
+	<div class="wrapper" id="panel">
 		<div id="theSidebar" class="sidebar">
 			<div class="logo">
 				<a href="/">
@@ -421,7 +537,7 @@
 				<h3>项目介绍：本项目收集了北京市各个管辖区的地名，并对这些地名进行相应的历史典故介绍，同时附上每个地名对应的北京话发音和普通话发音。项目累计条目及照片2千余条。</h3>
 			</div>
 
-			<button class="detailButton" onclick="location.href='place.html';">详细介绍>></button>
+			<button class="detailButton" onclick="location.href='/place.html';">详细介绍>></button>
 
 		</div>
 
@@ -637,4 +753,28 @@
 	    }
 	</script>
 
+    <script type="text/javascript">
+		var slideout = new Slideout({
+			'panel': document.querySelector('#panel'),
+			'menu': document.querySelector('#menu'),
+			'padding': 140,
+			'tolerance': 70
+		});
+
+		document.querySelector('.js-slideout-toggle').addEventListener('click', function() {
+			slideout.toggle();
+		});
+
+		document.querySelector('.sideMenu').addEventListener('click', function(eve) {
+			if (eve.target.nodeName === 'A') { slideout.close(); }
+		});
+
+		slideout.on('beforeopen', function() {
+			document.querySelector('.fixed').classList.add('fixed-open');
+		});
+
+		slideout.on('beforeclose', function() {
+			document.querySelector('.fixed').classList.remove('fixed-open');
+		});
+    </script>
 @endsection

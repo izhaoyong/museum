@@ -321,6 +321,20 @@
 		nav>.pagination>.pagination{
 			margin: 0px;
 		}
+
+		.detailButton{
+			float:right; 
+			margin-right: 1em; 
+			padding:0.5em 2em; 
+			font-weight:bold; 
+			border:none; 
+			background:transparent;
+			color: #b44242;
+		}
+
+		.detailButton:hover{
+			color: #777;
+		}
 	</style>
 
     <div class="navbar navbar-inverse navbar-fixed-top menu">
@@ -418,7 +432,7 @@
 				</h3>
 			</div>
 
-			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold; background: transparent; border: none; " onclick="location.href='foreign.html';">详细介绍>></button>
+			<button class="detailButton" onclick="location.href='foreign.html';">详细介绍>></button>
 		</div>
 
 		<div id="theGrid" class="main">
@@ -618,6 +632,12 @@
 			$(a).css('text-decoration','underline');
 			$(a).css('color','#B44242');
 		}
+
+		if( "ontouchstart" in document ) {
+	        $('[class="fa fa-close  glyphicon glyphicon-remove"]').css('top', '2vh');
+	        $('[class="fa fa-chevron-left fa-2x pre"]').css('position', 'fixed');
+	        $('[class="fa fa-chevron-right fa-2x next"]').css('position', 'fixed');
+	    }
 
 		$(function () {
             $("img.lazy").lazyload({

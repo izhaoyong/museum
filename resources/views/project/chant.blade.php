@@ -6,6 +6,10 @@
 	<link rel="stylesheet" href="{{asset('/css/style2.css')}}" />
 	<link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" />
 	<script src="{{ asset('/js/modernizr.custom-places.js')}}"></script>
+
+	<link rel="stylesheet" href="{{asset('/css/style.css')}}" />
+	<script src="{{ asset('/js/slideout.js')}}"></script>
+
 	<style type="text/css">
 		#content{
 			color: #9d9d9d;
@@ -186,6 +190,7 @@
 
 		.navbar-collapse.collapse{
 			display: flex !important;
+			justify-content: center;
 			background-color: #f5f5f5;
 			margin: auto;
 			width: 100%;
@@ -317,8 +322,15 @@
 		}
 
 		.nav.nav-tabs{
-			margin: 0px 0px 10px 340px;
+			margin: 0px 0px 10px 300px;
 			border-bottom: none; 
+			display: flex;
+			justify-content: center;
+		}
+
+		.nav.nav-tabs>li{
+			height: 40px;
+			margin-bottom: 0;
 		}
 
 		.nav.nav-tabs>li>a{
@@ -411,11 +423,239 @@
 			color: #333;
 			font-weight: bold;
 		}
+
+		.picture {
+		    display: flex;
+		    justify-content: center;
+		}
+
+		.detailButton{
+			float:right; 
+			margin-right: 1em; 
+			padding:0.5em 2em; 
+			font-weight:bold; 
+			border:none; 
+			background:transparent;
+			color: #b44242;
+		}
+
+		.detailButton:hover{
+			color: #777;
+		}
+	</style> 
+
+	<style type="text/css">
+		@media screen and (max-width: 600px){
+			.navbar-header, .select{
+				display: none;
+			}
+
+			.menuContainer{
+				width: 100%;
+				margin: 5px 0;
+			}
+		}
+
+		@media screen and (min-width: 600px){
+			.btn-hamburger.js-slideout-toggle{
+				display: none;
+			}
+
+			.header-hamburger>button, .header-hamburger>a{
+				display: none;
+			}
+		}
+
+		@media screen and (max-width: 1160px) and (min-width: 600px){
+			.menuContainer{
+				margin-left: 300px;
+				width: calc(100% - 300px);
+			}
+		}
+
+		@media screen and (min-width: 1160px){
+			.menuContainer{
+				display: none;
+			}
+		}
+
+		.select{
+			display: none;
+		}
+
+		.fixed {
+			backface-visibility: hidden;
+			position: fixed;
+			z-index:2;
+			transition: transform 300ms ease;
+		}
+
+		.fixed-open {
+			transform: translate3d(140px, 0px, 0px);
+		}
+
+		.btn-hamburger {
+			position: absolute;
+			border-radius: 4px;
+			border:1px solid black;
+			padding: 9px 10px;
+			width: 44px;
+			top: 8px;
+			bottom: 8px;
+			background: white;
+		}
+
+		.btn-hamburger span{
+		    display: block;
+		    width: 22px;
+		    height: 2px;
+		    border-radius: 1px;
+		    background-color: #B44242;
+		}
+
+		.btn-hamburger .icon-bar+.icon-bar {
+			margin-top: 4px;
+		}
+
+		.header-hamburger>a{
+			color: #9d9d9d;
+		}
+
+		.header-hamburger>a:hover{
+			color: #B44242;
+		}
+
+		.header-hamburger>a>button{
+			position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    -webkit-transform: translate(-50%,-50%); 
+		    -moz-transform: translate(-50%,-50%); 
+		    -o-transform: translate(-50%,-50%); 
+		    transform: translate(-50%,-50%);
+		    border: none;
+		    background: transparent;
+		    font-size: 24px;
+		}
+
+		.header-hamburger>button:nth-child(4){
+			position: absolute;
+		    right: 12px;
+		    top: 50%;
+		    width: 24px;
+		    height: 24px;
+		    -webkit-transform: translate(0, -50%); 
+		    -moz-transform: translate(0, -50%); 
+		    -o-transform: translate(0, -50%); 
+		    transform: translate(0, -50%);
+		    border: none;
+		    background: transparent;
+		    background-image: url('/img/search.png');
+		    background-repeat: no-repeat;
+		    background-size: contain;
+		}
+
+		.menuContainer{
+			height: 50px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.menuContainer>button{
+			display: inline-block;
+			width: 30px;
+			height: 100%;
+			top: 0;
+			position: absolute;
+			border: none;
+			background-color: white;
+		}
+
+		.menuContainer>button.toLeft{
+			left: 0;
+		}
+
+		.menuContainer>button.toRight{
+			right: 0;
+		}
+
+		.menuContainer>div{
+			margin: 0;
+			padding: 0;
+			border-width: 0;
+			top: 0;
+			left: 30px;
+			right: 30px;
+			bottom: 0;
+			width: calc(100% - 60px);
+			position: absolute;
+			overflow: hidden;
+		}
+
+		.menuContainer>div>ul{
+			min-width: 700px;
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			margin: 0;
+			position: absolute;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.menuContainer>div>ul>li{
+			display: inline-block;
+			list-style: none;
+			height: 50px;
+			line-height: 50px;
+		}
+
+		.menuContainer>div>ul>li>a{
+			line-height: 100%;
+			height: 100%;
+			font-weight: bold;
+			color: #9d9d9d;
+		}
+
+		.menuContainer>div>ul>li>a:hover{
+			color: #B44242;
+		}
+
+		#panel{
+			background-color: white;
+		}
+
+		div.search{
+			display: none;
+			width: 100%;
+			height: 100%;
+			z-index: 999;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
 	</style>
 
-    <div class="navbar navbar-inverse navbar-fixed-top menu">
-     	<div class="container">
+    <nav id="menu" class="sideMenu slideout-menu">
+      <section class="menu-section">
+        <ul class="menu-section-list">
+			<li><a  href="/">首页</a></li>
+			<li><a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">地名</a></li>
+			<li><a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">北京话文献</a></li>
+			<li><a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">吟诵</a></li>
+			<li><a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">清代御诗</a></li>
+			<li><a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">土语词典</a></li>
+			<li><a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">外语</a></li>
+			<li><a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">口传文化</a></li>
+			<li><a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">话说老北京</a></li>
+        </ul>
+      </section>
+    </nav>
 
+    <div class="navbar navbar-inverse navbar-fixed-top menu header-hamburger fixed">
+     	<div class="container">
 	        <div class="navbar-header">
 	        	<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 		            <span class="sr-only">Toggle navigation</span>
@@ -427,63 +667,34 @@
 
 	        <div class="navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
-					<li>
-						<a  href="/">首页</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">
-							地名
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">
-							北京话文献
-						</a>
-					</li>
-
-					<li>
-						<a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">
-							吟诵
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">
-							清代御诗
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">
-							土语词典
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">
-							外语
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">
-							口传文化
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">
-							话说老北京
-						</a>
-					</li>				
+					<li><a  href="/">首页</a></li>
+					<li><a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">地名</a></li>
+					<li><a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">北京话文献</a></li>
+					<li><a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">吟诵</a></li>
+					<li><a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">清代御诗</a></li>
+					<li><a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">土语词典</a></li>
+					<li><a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">外语</a></li>
+					<li><a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">口传文化</a></li>
+					<li><a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">话说老北京</a></li>
 				</ul>
 	        </div>
       	</div>
+
+       	<button class="btn-hamburger js-slideout-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+      	</button>
+
+      	<a href="/place.html">
+      		<button>吟诵</button>
+      	</a>
+      	
+      	<button class="searchBtn"></button> 
     </div>
 
-	<div class="wrapper">
+	<div class="wrapper" id="panel">
 		<div id="theSidebar" class="sidebar">
 			<div class="logo">
 				<a href="/">
@@ -496,7 +707,6 @@
 					<input name="search" class="box" type="text" title="在此输入搜索内容">
 					<input type="submit" class="button" title="搜索" value="GO">
 				</form>
-
 			</div>
 			
 			<h1>吟诵</h1>
@@ -505,7 +715,7 @@
 				<h3>吟诵是指对北京话/普通话诗文吟诵研究，主要以视频的形式展示北京话吟诵和普通话诗文的吟诵资源。资源共分为四个部分：文献论文，北京话吟诵，其他方言吟诵及吟诵教学。</h3>
 			</div>
 
-			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold; background:transparent; border:none; " onclick="location.href='chant.html';">详细介绍>></button>
+			<button class="detailButton" onclick="location.href='/chant.html';">详细介绍>></button>
 		</div>
 
 		@if (!$search)
@@ -537,9 +747,30 @@
 		@else
 		@endif
 
+		<div class="menuContainer">
+			<button class="toLeft"><<</button>
+			<div>
+				<ul>
+					<li {{ (Request::path() == 'chant/beijing' ? 'class=active' : '') }}><a href="{{ url('/chant/beijing')}}">北京话吟诵</a></li>
+					<li {{ (Request::path() == 'chant/normal' ? 'class=active' : '') }}><a href="{{url('/chant/normal')}}">普通话吟诵</a></li>
+					<li {{ (Request::path() == 'chant/other' ? 'class=active' : '') }}><a href="{{url('/chant/other')}}">京外吟诵</a></li>
+					<li {{ (Request::path() == 'chant/teach' ? 'class=active' : '') }}><a href="{{url('/chant/teach')}}">吟诵教学</a></li>
+					<li {{ (Request::path() == 'chant/book' ? 'class=active' : '') }}><a href="{{url('/chant/book?book=ancient')}}">北京话吟诵文献</a></li>
+					<li {{ (Request::path() == 'chant/book' ? 'class=active' : '') }}><a href="{{url('/chant/book?book=modern')}}">普通话吟诵文献</a></li>
+					<li {{ (Request::path() == 'chant/paper' ? 'class=active' : '') }}><a href="{{url('/chant/paper')}}">吟诵论文</a></li>
+					<li {{ (Request::path() == 'chant/ppt' ? 'class=active' : '') }}><a href="{{url('/chant/ppt')}}">吟诵课件</a></li>
+				</ul>
+			</div>
+			<button class="toRight">>></button>
+		</div>
+
 		<div id="theGrid" class="main">
 			@yield('chant_content')
 		</div>
+	</div>
+
+	<div class="search" >
+		
 	</div>
 
 	<script type="text/javascript">
@@ -745,10 +976,13 @@
 				li.removeAttribute('class');
 			}
 		});
-	</script>
 
-	<script type="text/javascript">
-		'use strict';
+		if( "ontouchstart" in document ) {
+	        $('[class="fa fa-close  glyphicon glyphicon-remove"]').css('top', '2vh');
+	        $('[class="fa fa-chevron-left fa-2x pre"]').css('position', 'fixed');
+	        $('[class="fa fa-chevron-right fa-2x next"]').css('position', 'fixed');
+	    }
+
 		var pdf = $('#placeholder');
 		$(pdf).height(0);
 		var html = pdf.context.children[0];
@@ -762,5 +996,58 @@
                 container: $("#container")
             });
         });
+
+        $('.searchBtn').click(){
+        	$('.search').css('display', 'block');
+        }
 	</script>
+
+    <script type="text/javascript">
+		var slideout = new Slideout({
+			'panel': document.querySelector('#panel'),
+			'menu': document.querySelector('#menu'),
+			'padding': 140,
+			'tolerance': 70
+		});
+		slideout.disableTouch();
+		document.querySelector('.js-slideout-toggle').addEventListener('click', function() {
+			slideout.toggle();
+		});
+
+		document.querySelector('.sideMenu').addEventListener('click', function(eve) {
+			if (eve.target.nodeName === 'A') { slideout.close(); }
+		});
+
+		slideout.on('beforeopen', function() {
+			document.querySelector('.fixed').classList.add('fixed-open');
+		});
+
+		slideout.on('beforeclose', function() {
+			document.querySelector('.fixed').classList.remove('fixed-open');
+		});
+
+		var menuContainer = document.querySelector('.menuContainer>div'),
+			ul = menuContainer.querySelector('ul'), 
+			touchX = 0,
+			touchCurX = 0,
+			preLeft = Number(ul.style.left),
+			menuWidth = menuContainer.getBoundingClientRect().width,
+			ulWidth = ul.getBoundingClientRect().width;
+			widthGap = menuWidth - ulWidth - 10;
+
+		menuContainer.querySelector("ul").addEventListener('touchstart', function(event){
+			touchX = event.touches[0].screenX;
+		});
+
+		menuContainer.querySelector("ul").addEventListener('touchmove', function(event){
+			touchCurX = event.touches[0].screenX;
+
+			if( preLeft + (touchCurX - touchX) > 10 || preLeft + (touchCurX - touchX) < widthGap ){
+				return ;
+			}
+			preLeft += (touchCurX - touchX);
+			ul.style.left = preLeft + "px";
+			touchX = touchCurX;
+		});
+    </script>
 @endsection

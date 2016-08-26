@@ -308,6 +308,20 @@
 		nav>.pagination>.pagination{
 			margin: 0px;
 		}
+
+		.detailButton{
+			float:right; 
+			margin-right: 1em; 
+			padding:0.5em 2em; 
+			font-weight:bold; 
+			border:none; 
+			background:transparent;
+			color: #b44242;
+		}
+
+		.detailButton:hover{
+			color: #777;
+		}
 	</style>
 
     <div class="navbar navbar-inverse navbar-fixed-top menu">
@@ -402,7 +416,7 @@
 				<h3>清代御诗主要是对北京御制三山五园诗集数据库建设与研究，包括对北京皇家园林、名园、清代帝王御制三山五园诗集的数据收集和建设。展示的内容包括标题、诗作、注释、年代、作者、以及图片等</h3>
 			</div>
 
-			<button style="float:right; margin-right: 1em; padding:0.5em 2em; font-weight:bold; background: transparent; border: none; " onclick="location.href='poem.html';">详细介绍>></button>
+			<button class="detailButton" onclick="location.href='/poem.html';">详细介绍>></button>
 		</div>
 
 		<div id="theGrid" class="main">
@@ -599,6 +613,12 @@
 			$(a).css('color','#B44242');
 		}
 
+		if( "ontouchstart" in document ) {
+	        $('[class="fa fa-close  glyphicon glyphicon-remove"]').css('top', '2vh');
+	        $('[class="fa fa-chevron-left fa-2x pre"]').css('position', 'fixed');
+	        $('[class="fa fa-chevron-right fa-2x next"]').css('position', 'fixed');
+	    }
+	    
 		$(function(){
             $("img.lazy").lazyload({
                 container: $("#container")

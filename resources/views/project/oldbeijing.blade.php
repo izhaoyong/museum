@@ -611,6 +611,12 @@
 			$(a).css('color','#B44242');
 		}
 
+		if( "ontouchstart" in document ) {
+	        $('[class="fa fa-close  glyphicon glyphicon-remove"]').css('top', '2vh');
+	        $('[class="fa fa-chevron-left fa-2x pre"]').css('position', 'fixed');
+	        $('[class="fa fa-chevron-right fa-2x next"]').css('position', 'fixed');
+	    }
+	    
         $(function () {
             $("img.lazy").lazyload({
                 container: $("#container")
