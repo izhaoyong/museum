@@ -13,6 +13,9 @@
 	<link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" />
 	<script src="{{ asset('/js/modernizr.custom-places.js')}}"></script>
 	
+	<link rel="stylesheet" href="{{asset('/css/style.css')}}" />
+	<script src="{{ asset('/js/slideout.js')}}"></script>
+
 	<style type="text/css">
 		.logo img{
 			width: 236px;
@@ -192,6 +195,10 @@
 		}
 
 		/*每一个小项，hover效果*/
+		.grid__item{
+			color: #7b7b7b !important;
+		}
+
 		.grid__item:hover{
 			color: #B44242 !important;
 		}
@@ -328,11 +335,218 @@
 			display: flex;
 			justify-content: center;
 		}
+
+		.detailButton{
+			float:right; 
+			margin-right: 1em; 
+			padding:0.5em 2em; 
+			font-weight:bold; 
+			border:none; 
+			background:transparent;
+			color: #b44242;
+		}
+
+		.detailButton:hover{
+			color: #777;
+		}		
 	</style>
 
-    <div class="navbar navbar-inverse navbar-fixed-top menu">
-      	<div class="container">
+	<style type="text/css">
+		@media screen and (max-width: 600px){
+			.navbar-header{
+				display: none;
+			}
+		}
 
+		@media screen and (min-width: 600px){
+			.btn-hamburger.js-slideout-toggle{
+				display: none;
+			}
+
+			.header-hamburger>button, .header-hamburger>a{
+				display: none;
+			}
+		}
+
+		.fixed {
+			backface-visibility: hidden;
+			position: fixed;
+			z-index:2;
+			transition: transform 300ms ease;
+		}
+
+		.fixed-open {
+			transform: translate3d(140px, 0px, 0px);
+		}
+
+		.btn-hamburger {
+			position: absolute;
+			border-radius: 4px;
+			border: none;
+			padding: 9px 10px;
+			width: 44px;
+			top: 8px;
+			bottom: 8px;
+			background: transparent;
+		}
+
+		.btn-hamburger span{
+		    display: block;
+		    width: 22px;
+		    height: 2px;
+		    border-radius: 1px;
+		    background-color: #B44242;
+		}
+
+		.btn-hamburger .icon-bar+.icon-bar {
+			margin-top: 4px;
+		}
+
+		.header-hamburger>a{
+			color: #B44242;
+		}
+
+		.header-hamburger>a>button{
+			position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    -webkit-transform: translate(-50%,-50%); 
+		    -moz-transform: translate(-50%,-50%); 
+		    -o-transform: translate(-50%,-50%); 
+		    transform: translate(-50%,-50%);
+		    border: none;
+		    background: transparent;
+		    font-size: 24px;
+		    text-decoration: underline;
+		}
+
+		.header-hamburger>button:nth-child(4){
+			position: absolute;
+		    right: 12px;
+		    top: 50%;
+		    width: 24px;
+		    height: 24px;
+		    -webkit-transform: translate(0, -50%); 
+		    -moz-transform: translate(0, -50%); 
+		    -o-transform: translate(0, -50%); 
+		    transform: translate(0, -50%);
+		    border: none;
+		    background: transparent;
+		    background-image: url('/img/search.svg');
+		    background-repeat: no-repeat;
+		    background-size: contain;
+		}
+
+		#panel{
+			background-color: white;
+		}
+
+		div.search{
+			display: none;
+			width: 100%;
+			height: 100%;
+			z-index: 999;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: gray;
+		}
+
+		div.search>div:nth-child(1){
+			display: flex;
+			justify-content: space-around;
+			margin-top: 5px;
+		}
+
+		div.search>div:nth-child(1)>form{
+			width: 100%;
+		    display: flex;
+		    justify-content: space-around;
+		}
+
+		div.search>div:nth-child(1)>form>input:nth-child(1){
+			width: 60%;
+			border-radius: 12px;
+			outline: none;
+			border: none;
+			padding-left: 10px;
+			padding-right: 10px;
+			height: 28px;
+		}
+
+		div.search>div:nth-child(1)>form>input:nth-child(2){
+			border-radius: 12px;
+			border: none;
+			outline: none;
+		}
+		
+		div.search>div:nth-child(1)>form>input:nth-child(3){
+			border-radius: 12px;
+			border: none;
+			outline: none;
+		}
+
+		div.search>div:nth-child(2){
+			display: flex;
+			justify-content: space-around;
+			margin-top: 10px; 
+		}
+
+		div.search>div:nth-child(2)>button{
+			border: none;
+			outline: none;
+			border-radius: 12px;
+			height: 28px;
+		}
+
+		#panel>div:nth-child(3){
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			padding: 0;
+			border: none;
+			background-color: rgba(128,128,128,0.5);
+			z-index: 999;
+			display: none;
+		}
+
+		.menu-section-list>li{
+			font-size: 16px;
+			border-bottom: 1px solid #e0e0e0;
+		}
+
+		.menu-section-list a{
+			color: #7b7b7b;
+		}
+
+		.menu-section-list a.active{
+			color: #b44242;
+			font-weight: bolder;
+		}
+	</style>
+
+    <nav id="menu" class="sideMenu slideout-menu" style="background:#fff;">
+      <section class="menu-section">
+        <ul class="menu-section-list">
+			<li><a  href="/">首页</a></li>
+			<li><a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">地名</a></li>
+			<li><a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">北京话文献</a></li>
+			<li><a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">吟诵</a></li>
+			<li><a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">清代御诗</a></li>
+			<li><a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">土语词典</a></li>
+			<li><a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">外语</a></li>
+			<li><a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">口传文化</a></li>
+			<li><a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">话说老北京</a></li>
+        </ul>
+      </section>
+    </nav>
+
+    <div class="navbar navbar-inverse navbar-fixed-top menu header-hamburger fixed"">
+      	<div class="container">
 	        <div class="navbar-header">
 	        	<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 		            <span class="sr-only">Toggle navigation</span>
@@ -398,9 +612,23 @@
 				</ul>
 	        </div>
      	</div>
+
+      	<button class="btn-hamburger js-slideout-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+      	</button>
+
+      	<a href="/oral.html">
+      		<button>口传文化</button>
+      	</a>
+      	
+      	<button class="searchBtn"></button> 
+
     </div>
 
-	<div class="wrapper">
+	<div class="wrapper" id="panel" style="width:100%">
 		<div id="theSidebar" class="sidebar">
 			<div class="logo">
 				<a href="/">
@@ -410,7 +638,7 @@
 			
 			<div id="search">
 				<form action="/oral">
-					<input name="search" class="box" type="text" title="在此输入搜索内容">
+					<input name="search" class="box" type="text" placeholder="在此输入搜索内容">
 					<input type="submit" class="button" title="搜索" value="GO">
 				</form>
 			</div>
@@ -421,6 +649,8 @@
 			<div class="info">
 				<h3>本项目是对北京地域口传文化进行研究。项目以数名土生土长的北京著名老艺人为采集对象，以老北京人聚居的城区为采集布点，观察、记录、描述、分析北京商业叫卖。</h3>
 			</div>
+
+			<button class="detailButton" onclick="location.href='/oral.html';">详细介绍>></button>
 		</div>
 
 		<div id="theGrid" class="main">
@@ -487,7 +717,22 @@
 			</nav>
 		</div>
 
+		<div class="mask"></div>
 	</div>
+
+	<div class="search">
+		<div>
+			<form action="/book">
+				<input name="search" type="text" placeholder="在此输入搜索内容">
+				<input type="submit" class="button" title="搜索" value="GO">
+				<input type="button" class="button" title="取消" value="Cancel">
+			</form>
+		</div>
+		<div>
+			<button>清除浏览记录</button>
+		</div>
+	</div>
+
 	<script type="text/javascript">
 		'use strict';
 		var position = -1,
@@ -598,7 +843,8 @@
 		});    
 
 		$('.grid__item').click(function(event){
-			console.log('ready');
+			slideout.close();
+
 			$('.grid').css('overflow-y','hidden');
 			$('.menu').delay(500).slideUp(1000,function(){
 				if ( position == 0 ) {
@@ -640,6 +886,50 @@
                 container: $("#container")
             });
         });
-
 	</script>
+
+    <script type="text/javascript">
+		var slideout = new Slideout({
+			'panel': document.querySelector('#panel'),
+			'menu': document.querySelector('#menu'),
+			'padding': 140,
+			'tolerance': 70
+		});
+		var flag = 0;
+
+		slideout.disableTouch();
+		slideout.close();
+
+		document.querySelector('.js-slideout-toggle').addEventListener('click', function() {
+			slideout.toggle();
+			if( !flag ){
+				$("#panel>div:nth-child(3)").css("display","block");
+			}else{
+				$("#panel>div:nth-child(3)").css("display","none");
+			}
+			flag = 1 - flag;
+		});
+
+		document.querySelector('.sideMenu').addEventListener('click', function(eve) {
+			if (eve.target.nodeName === 'A') { slideout.close(); }
+		});
+
+		slideout.on('beforeopen', function() {
+			document.querySelector('.fixed').classList.add('fixed-open');
+		});
+
+		slideout.on('beforeclose', function() {
+			document.querySelector('.fixed').classList.remove('fixed-open');
+		});
+
+		var searchBtn = document.querySelector('.searchBtn'),
+			searchDiv = document.querySelector('div.search');
+		$(searchBtn).click( function(event){
+			searchDiv.style.display = "block";
+		});
+
+		$("div.search>div:nth-child(1)>form>input:nth-child(3)").click(function(event){
+			searchDiv.style.display = "none";
+		});
+    </script>
 @endsection

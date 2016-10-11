@@ -35,7 +35,7 @@
 		}
 
 		#header{
-			z-index: 1000px;
+			z-index: 1000;
 		}
 
 		#header>button:nth-child(1){
@@ -195,7 +195,76 @@
 		a>.oldbeijing{
 			background-image: url('/assets/img/index/9.jpg');
 		}
+	</style>
 
+	<style type="text/css">
+		.door{
+			width: 50%;
+			position: absolute;
+			overflow: hidden;
+			background-color: #B29488;
+			transition-duration: 3s;
+			visibility: hidden;
+		}
+
+		.leftDoor{
+			left: 0;
+			height: 100%;
+			transform-origin: left;
+		}
+
+		.leftDoor>div>img{
+			left: 0;
+			width: 200% !important;
+		}
+
+		.leftDoor>h2{left: 50%;}
+
+		.leftDoor>button{left: 100%;}
+
+		.rightDoor{
+			right: 0;
+			height: 100%;
+			transform-origin: right;
+		}
+
+		.rightDoor>div>img{
+			right: 0;
+			width: 200% !important;
+		}
+		
+		.rightDoor>h2{right: 50%;}
+
+		.rightDoor>button{left: 0%;}
+
+		.rotate90{
+			transform: rotateY(90deg);
+		}
+
+		.rotate180{
+			transform: rotateY(-90deg);
+		}
+
+		.rotate0{
+			transform: rotateY(0deg);
+			transition-duration: 3s;
+		}
+
+		.rotate360{
+			transform: rotateY(0deg);
+			transition-duration: 3s;
+		}
+
+		button.close{
+			position: absolute;
+			right: 5%;
+			top: 5%;
+			outline: none;
+		}
+
+		.will-hidden{
+			/*visibility: hidden;*/
+		}
 	</style>
 
 	<header id="header" class="codrops-header">
@@ -217,19 +286,37 @@
 
 	<div id="slideshow" class="dragslider">
 		<section class="img-dragger img-dragger-large dragdealer">
-			<div class="handle">
-				<div class="slide" data-content="content-1">
-					<div class="img-wrap">
-						<img src="{{ asset('/assets/img/index/1.jpg')}}" alt="北京语言文化博物馆"/>
-					</div>
-					<h2>
+			<div class="handle" style="">
+				<div class="slide" data-content="content-1" style="">
+					<div class="img-wrap will-hidden"><img src="{{ asset('/assets/img/index/1.jpg')}}" alt="北京语言文化博物馆"/></div>
+					<h2 class="will-hidden">
 						<em>北京语言文化博物馆</em>
 						<img src="{{ asset('/assets/img/icon/logow.png')}}" class="logo">
 						<span>开启老北京文化的奇妙旅程</span>
-					</h2>
-					<button class="content-switch"></button>
-				</div>
+					</h2 class="will-hidden">
+					<button class="content-switch will-hidden"></button>
 
+					<div class="leftDoor door">
+						<div class="img-wrap"><img src="{{ asset('/assets/img/index/1.jpg')}}" alt="北京语言文化博物馆"/></div>
+						<h2>
+							<em>北京语言文化博物馆</em>
+							<img src="{{ asset('/assets/img/icon/logow.png')}}" class="logo">
+							<span>开启老北京文化的奇妙旅程</span>
+						</h2>
+						<button class="content-switch"></button>
+					</div>
+					
+					<div class="rightDoor door">
+						<div class="img-wrap"><img src="{{ asset('/assets/img/index/1.jpg')}}" alt="北京语言文化博物馆"/></div>
+						<h2>
+							<em>北京语言文化博物馆</em>
+							<img src="{{ asset('/assets/img/icon/logow.png')}}" class="logo">
+							<span>开启老北京文化的奇妙旅程</span>
+						</h2>
+						<button class="content-switch"></button>
+					</div>
+				</div>
+				
 				<div class="slide" data-content="content-2">
 					<div class="img-wrap"><img src="{{ asset('/assets/img/index/2.jpg')}}" alt="地名"/></div>
 					<h2><em>地名</em><span>北京各个管辖区的地名</span></h2>
@@ -305,17 +392,24 @@
 			</div>
 		</section>
 
-		<section class="pages">
-			<div class="content" data-content="content-1" style="padding-top: 30px;">
+		<section class="pages" style="position: absolute; top: 0px; height: 100%; z-index: -1">
+			<div class="content" data-content="content-1" style="padding-top: 30px; height:100%; overflow-y:auto;">
+				<button class="close">X</button>
 				<h2 style="padding-top: 50px;">北京语言文化数字博物馆简介</h2>
+
+				<div>
+					<input type="text" name="search" placeholder="在此输入搜索内容" class="query" />
+					<button class="search">GO</button>
+				</div>
+				
 				<p>北京语言文化数字博物馆是全国第一家专门针对北京语言文化而建造的网上数字博物馆。面对着世界统一性的威胁，越来越多的人意识到要保护非物质文化遗产，北京语言文化的保护和发扬也变得迫在眉睫，这也是北京语言文化数字博物馆建立的重要意义。</p>
-				<p>北京语言文化数字博物馆共包括北京地域口传文化研究、北京话/普通话诗文吟诵研究、北京皇家园林庙宇名人故居楹联匾额研究、北京地名文化研究、北京御制三山五园诗集数据库建设与研究、北京语言文化图解词典编创、北京话研究历史文献叙录及目录、北京外语使用情况研究、北京语言资源数字博物馆建设等9 个子项目。该项目于2012 年5 月正式立项，预计3年内完成。项目总负责人是北京语言大学张维佳教授，首都师范大学、北京师范大学、北京语言大学10 多位专家和数十名研究生参与该项目研究。</p>
+				<p>北京语言文化数字博物馆共包括<a href="{{ url('/oral') }}" style="display:inline; text-decoration: underline;">北京地域口传文化研究</a>、<a href="{{ url('/chant') }}" style="display:inline; text-decoration: underline;">北京话/普通话诗文吟诵研究</a>、北京皇家园林庙宇名人故居楹联匾额研究、<a href="{{ url('/place') }}" style="display:inline; text-decoration: underline;">北京地名文化研究</a>、<a href="{{ url('/poem') }}" style="display:inline; text-decoration: underline;">北京御制三山五园诗集数据库建设与研究</a>、<a href="{{ url('/dict') }}" style="display:inline; text-decoration: underline;">北京语言文化图解词典编创</a>、<a href="{{ url('/book') }}" style="display:inline; text-decoration: underline;">北京话研究历史文献叙录及目录</a>、<a href="{{ url('/english') }}" style="display:inline; text-decoration: underline;">北京外语使用情况研究</a>、<a href="{{ url('/chant') }}" style="display:inline; text-decoration: underline;">北京语言资源数字博物馆建设</a>等9 个子项目。该项目于2012 年5 月正式立项，预计3年内完成。项目总负责人是北京语言大学张维佳教授，首都师范大学、北京师范大学、北京语言大学10 多位专家和数十名研究生参与该项目研究。</p>
 
 				<div class="navigator">
 					<div>
 						<a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">
 							<button  value="地名" >地名</button>
-							<div class="place "></div>
+							<div class="place"></div>
 						</a>						
 					</div>
 
@@ -367,93 +461,7 @@
 							<div class="oldbeijing"></div>
 						</a>						
 					</div>
-
 				</div>
-			</div>
-
-			<div class="content" data-content="content-2">
-				<h2>地名</h2>
-				<p>本项目是对北京地名文化研究。项目收集了北京市各个管辖区的地名加以归纳整理，并对这些地名进行相应的历史典故介绍，同时附上每个地名对应的北京话发音和普通话发音。项目累计条目及照片2千余条。项目由杨建国老师负责。</p>
-				<!-- <a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">
-					<button class="project-switch" value="立即参观" >立即参观</button>
-				</a> -->
-			</div>
-
-			<div class="content" data-content="content-3">
-				<h2>楹联</h2>
-				<p>
-					本项目住傲视对北京皇家园林庙宇名人故居楹联匾额研究。展示包括北京20多个地点如皇家园林、古刹、名人故居的楹联匾额，网站展示的数据会包括地点，匾额图片或者楹联图片，文本内容，注释，赏析以及平仄等。
-				</p>
-			</div>
-
-			<div class="content" data-content="content-4">
-				<h2>北京话文献</h2>
-				<p>
-					本项目是对北京话研究历史文献叙录及目录进行归纳和整理。项目收集北京话研究历史文献的叙录及目录，进行资源建设与研究。共包括三个部分，分别是：直接记录现当代北京方言土语或口语的辞书和准辞书；用北京话撰写的文学作品中的语汇辞书和语汇索引书；清代国家机关主持编撰的多体《清文鉴》类辞书和准辞书的现代整理本
-				</p>
-				<a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">
-					<button class="project-switch" value="立即参观" >立即参观</button>
-				</a>				
-			</div>
-
-			<div class="content" data-content="content-5">
-				<h2>吟诵</h2>
-				<p>
-					吟诵是指对北京话/普通话诗文吟诵研究，主要以视频的形式展示北京话吟诵和普通话诗文的吟诵资源。资源共分为四个部分：文献论文，北京话吟诵，其他方言吟诵及吟诵教学。
-				</p>
-				<a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">
-					<button class="project-switch" value="立即参观" >立即参观</button>
-				</a>
-			</div>
-
-			<div class="content" data-content="content-6">
-				<h2>清代御诗</h2>
-				<p>
-					清代御诗主要是对北京御制三山五园诗集数据库建设与研究，包括对北京皇家园林、名园、清代帝王御制三山五园诗集的数据收集和建设。展示的内容包括标题、诗作、注释、年代、作者、以及图片等。
-				</p>
-				<a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">
-					<button class="project-switch" value="立即参观" >立即参观</button>
-				</a>
-			</div>
-
-			<div class="content" data-content="content-7">
-				<h2>土语词典</h2>
-				<p>
-					土语词典是对北京语言资源数字博物馆的建设。方言土语承载着传统文化，过去的节庆礼仪有哪些，贩夫走卒、市井街道是什么样的，太太小姐的吃穿用度都有哪些，随着时间的推移，这些过去的事物都在渐渐消失，方言土语词正在被今天的新生词语所取代，为了方言土语能够以声音、图像、释义相结合的方式呈现给大众，邀请到文化名人解读、专业人士注音、名校硕博团队写作，共同收集制作本部分内容。
-				</p>
-				<a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">
-					<button class="project-switch" value="立即参观" >立即参观</button>
-				</a>
-			</div>
-
-			<div class="content" data-content="content-8">
-				<h2>外语</h2>
-				<p>
-					外语项目主要是对北京外语使用情况进行研究。项目收集包含汉语和对应英语的指示信息，如地铁指示牌、景区导引等，并收集照片，记录地点。
-				</p>
-				<a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">
-					<button class="project-switch" value="立即参观" >立即参观</button>
-				</a>
-			</div>
-
-			<div class="content" data-content="content-9">
-				<h2>口传文化</h2>
-				<p>
-					本项目是对北京地域口传文化进行研究。项目以数名土生土长的北京著名老艺人为采集对象，以老北京人聚居的城区为采集布点，观察、记录、描述、分析北京商业叫卖。
-				</p>
-				<a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">
-					<button class="project-switch" value="立即参观" >立即参观</button>
-				</a>
-			</div>
-			
-			<div class="content" data-content="content-10">
-				<h2>话说老北京</h2>
-				<p>
-					话说老北京主要是对北京语言文化图解词典编创。本项目以《话说老北京》这部京味图画书为蓝本，整理成为一部能听能看的老北京故事图鉴，通过图鉴记录过去的人玩什么、吃什么、穿什么，街道上卖什么，流行什么。
-				</p>
-				<a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">
-					<button class="project-switch" value="立即参观" >立即参观</button>
-				</a>
 			</div>
 		</section>
 	</div>
@@ -494,6 +502,8 @@
 					onToggleContentComplete : toggleCompleteCtrls
 				}),
 				toggleSlideshow = function() {
+					// $('.door').css('visibility','hidden');
+					// $('.will-hidden').css('visibility','visible');
 					slideshow.toggle();
 					toggleBtnn();
 				},
@@ -509,9 +519,9 @@
 	</script>
 	<script type="text/javascript">
 		(function(){
-			var isMouseDown = false;
+			var isMouseDown = false, curSlide = 0;
 			var prex = 0 , curx = 0, prey = 0, cury = 0, gapx , gapy ;
-			$('.slide').mousedown(function( event ){
+			$('.slide').mousedown(function( event){
 				isMouseDown = true;
 				prex = event.pageX;
 				prey = event.pageY;
@@ -549,12 +559,69 @@
 			});
 
 
-			if( "ontouchstart" in document ) {
+			if ( /mobile/ig.test(navigator.userAgent) ) {
+				console.log('mobile');
+
 		        $('.navigator button').each(function(){
 		        	$(this).css('visibility', 'visible');
 		        });
-		    }
+			}
+			
+			$(".handle>div:nth-child(1)").click(function (evt) {	
+				if ( gapx == 0 && gapy == 0 ) {
+					if (evt.currentTarget == $('.handle').children()[0]) {
+						$('.will-hidden').css('visibility','hidden');
+						$('.door').css('visibility', 'visible');
+
+						$('.handle').css('background-color', 'transparent');
+						$('.handle>div:nth-child(1)').css('background-color', 'transparent');
+						$('.js .dragslider').css('background-color','transparent')
+
+						$('.leftDoor').addClass('rotate90');
+						$('.rightDoor').addClass('rotate180');
+
+						$('#header').css('z-index', -1);
+						$('.pages').css('z-index', 99);
+						setTimeout(function(){
+							$('.handle').css('visibility', 'hidden');
+							$('.dragdealer').css('visibility', 'hidden');
+							console.log('down');
+						}, 3000);
+					}
+				}
+			});
+
+			$('.search').click(function(evt){
+				console.log('jajdflkajdf');
+			});
+
+			$('.query').click(function(evt){
+				// $(event.target).focus();
+			});
+
+			$('.query').keydown(function(evt){
+				console.log('keydown');
+			});
+
+			$('.close').click(function(evt){
+				$('.handle').css('visibility', 'visible');
+				$('.dragdealer').css('visibility', 'visible');
+
+				$('.leftDoor').removeClass('rotate90');
+				$('.rightDoor').removeClass('rotate180');
+
+				setTimeout(function(){
+					$('.pages').css('z-index', -1);
+					$('#header').css('z-index', 1000);
+					$('.js .dragslider').css('background-color','#823030');
+					$('.handle>div:nth-child(1)').css('background-color', '#B29488');
+					$('.handle').css('background-color', 'white');
+
+					$('.door').css('visibility', 'hidden');
+					$('.will-hidden').css('visibility','visible');
+				}, 3000);
+
+			});
 		})();
 	</script>
 @endsection
- 

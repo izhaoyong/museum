@@ -207,6 +207,10 @@
 		}
 
 		/*每一个小项，hover效果*/
+		.grid__item{
+			color: #7b7b7b !important;
+		}
+
 		.grid__item:hover{
 			color: #B44242 !important;
 		}
@@ -294,6 +298,7 @@
 		@media screen and (max-width: 1200px){
 			.navbar-collapse.collapse{
 				visibility: hidden !important;
+				display: block !important;
 			}
 
 			.navbar-collapse.collapse.in{
@@ -442,11 +447,84 @@
 		.detailButton:hover{
 			color: #777;
 		}
+
+		#panel>div:nth-child(6){
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			padding: 0;
+			border: none;
+			background-color: rgba(128,128,128,0.5);
+			z-index: 999;
+			display: none;
+		}
+
+		div.search{
+			display: none;
+			width: 100%;
+			height: 100%;
+			z-index: 999;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: gray;
+		}
+
+		div.search>div:nth-child(1){
+			display: flex;
+			justify-content: space-around;
+			margin-top: 5px;
+		}
+
+		div.search>div:nth-child(1)>form{
+			width: 100%;
+		    display: flex;
+		    justify-content: space-around;
+		}
+
+		div.search>div:nth-child(1)>form>input:nth-child(1){
+			width: 60%;
+			border-radius: 12px;
+			outline: none;
+			border: none;
+			padding-left: 10px;
+			padding-right: 10px;
+			height: 28px;
+		}
+
+		div.search>div:nth-child(1)>form>input:nth-child(2){
+			border-radius: 12px;
+			border: none;
+			outline: none;
+		}
+		
+		div.search>div:nth-child(1)>form>input:nth-child(3){
+			border-radius: 12px;
+			border: none;
+			outline: none;
+		}
+
+		div.search>div:nth-child(2){
+			display: flex;
+			justify-content: space-around;
+			margin-top: 10px; 
+		}
+
+		div.search>div:nth-child(2)>button{
+			border: none;
+			outline: none;
+			border-radius: 12px;
+			height: 28px;
+		}
 	</style> 
 
 	<style type="text/css">
 		@media screen and (max-width: 600px){
-			.navbar-header, .select{
+			.navbar-header{
 				display: none;
 			}
 
@@ -497,12 +575,12 @@
 		.btn-hamburger {
 			position: absolute;
 			border-radius: 4px;
-			border:1px solid black;
+			border: none;
 			padding: 9px 10px;
 			width: 44px;
 			top: 8px;
 			bottom: 8px;
-			background: white;
+			background: transparent;
 		}
 
 		.btn-hamburger span{
@@ -518,10 +596,6 @@
 		}
 
 		.header-hamburger>a{
-			color: #9d9d9d;
-		}
-
-		.header-hamburger>a:hover{
 			color: #B44242;
 		}
 
@@ -536,6 +610,7 @@
 		    border: none;
 		    background: transparent;
 		    font-size: 24px;
+		    text-decoration: underline;
 		}
 
 		.header-hamburger>button:nth-child(4){
@@ -550,7 +625,7 @@
 		    transform: translate(0, -50%);
 		    border: none;
 		    background: transparent;
-		    background-image: url('/img/search.png');
+		    background-image: url('/img/search.svg');
 		    background-repeat: no-repeat;
 		    background-size: contain;
 		}
@@ -559,6 +634,7 @@
 			height: 50px;
 			position: relative;
 			overflow: hidden;
+			border-bottom: 1px solid #acacac;
 		}
 
 		.menuContainer>button{
@@ -621,24 +697,33 @@
 			color: #B44242;
 		}
 
+		.menuContainer>div>ul>li.active>a{
+			color: #B44242 !important;
+			text-decoration: underline !important;
+		}
+
 		#panel{
 			background-color: white;
 		}
 
-		div.search{
-			display: none;
-			width: 100%;
-			height: 100%;
-			z-index: 999;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
+
+
+		.menu-section-list>li{
+			font-size: 16px;
+			border-bottom: 1px solid #e0e0e0;
+		}
+
+		.menu-section-list a{
+			color: #7b7b7b;
+		}
+
+		.menu-section-list a.active{
+			color: #b44242;
+			font-weight: bolder;
 		}
 	</style>
 
-    <nav id="menu" class="sideMenu slideout-menu">
+    <nav id="menu" class="sideMenu slideout-menu" style="background:#fff;">
       <section class="menu-section">
         <ul class="menu-section-list">
 			<li><a  href="/">首页</a></li>
@@ -694,7 +779,7 @@
       	<button class="searchBtn"></button> 
     </div>
 
-	<div class="wrapper" id="panel">
+	<div class="wrapper" id="panel" style="width:100%">
 		<div id="theSidebar" class="sidebar">
 			<div class="logo">
 				<a href="/">
@@ -704,7 +789,7 @@
 			
 			<div id="search">
 				<form action="/chant">
-					<input name="search" class="box" type="text" title="在此输入搜索内容">
+					<input name="search" class="box" type="text" placeholder="在此输入搜索内容">
 					<input type="submit" class="button" title="搜索" value="GO">
 				</form>
 			</div>
@@ -748,7 +833,7 @@
 		@endif
 
 		<div class="menuContainer">
-			<button class="toLeft"><<</button>
+			<button class="toLeft"><</button>
 			<div>
 				<ul>
 					<li {{ (Request::path() == 'chant/beijing' ? 'class=active' : '') }}><a href="{{ url('/chant/beijing')}}">北京话吟诵</a></li>
@@ -761,16 +846,27 @@
 					<li {{ (Request::path() == 'chant/ppt' ? 'class=active' : '') }}><a href="{{url('/chant/ppt')}}">吟诵课件</a></li>
 				</ul>
 			</div>
-			<button class="toRight">>></button>
+			<button class="toRight">></button>
 		</div>
 
 		<div id="theGrid" class="main">
 			@yield('chant_content')
 		</div>
+
+		<div class="mask"></div>
 	</div>
 
-	<div class="search" >
-		
+	<div class="search">
+		<div>
+			<form action="/chant">
+				<input name="search" type="text" placeholder="在此输入搜索内容">
+				<input type="submit" class="button" title="搜索" value="GO">
+				<input type="button" class="button" title="取消" value="Cancel">
+			</form>
+		</div>
+		<div>
+			<button>清除浏览记录</button>
+		</div>
 	</div>
 
 	<script type="text/javascript">
@@ -898,10 +994,12 @@
 			$('.grid').css('overflow-y','scroll');
 			$('.menu').delay(500).slideDown(0,function(){
 				if ( $(window).width() > 1160 ) {
-					$('.select').css('display','none');
+					// $('.select').css('display','none');
+					$('.menuContainer').css('display','none');
 					$('.nav.nav-tabs').css('display','block');
 				}else{
-					$('.select').css('display','block');
+					// $('.select').css('display','block');
+					$('.menuContainer').css('display','block');
 					$('.nav.nav-tabs').css('display','none');
 				}
 			});
@@ -912,9 +1010,9 @@
 		});    
 
 		$('.grid__item').click(function( event ){
+			slideout.close();
 
 			$('.grid').css('overflow-y','hidden');
-			
 			$('.menu').delay(500).slideUp(1000, function(){
 				if ( position == 0 ) {
 					$(left).css('visibility','hidden');
@@ -924,7 +1022,10 @@
 					$(right).css('visibility','hidden');
 				}				
 				$('.wrapper').delay(1500).css('top','0px');
-				$('.select').css('display','none');
+				// $('.select').css('display','none');
+				
+				$('.menuContainer').css('display','none');
+
 				$('.nav.nav-tabs').css('display','none');
 
         		var imgs = $('img[data-src]');
@@ -933,7 +1034,6 @@
 
 				var picture = $(articles[position]).children()[1];
 				media = $(picture).children()[0];
-
 			});
 
 			console.log( position );
@@ -956,14 +1056,6 @@
 
 	<script type="text/javascript">
 		'use strict';
-		console.log("click");
-		$('.select ul>li').click(function( event ){
-			console.log("click");
-			var li = event.target;
-			var url = $($($(li).parent()).parent()).prev();
-			$(url).html( $(li).html() ); 
-		});
-
 		$('.nav.nav-tabs').click(function(event){
 			var book = location.href.split('=');
 			if ( book.length > 1) {
@@ -996,10 +1088,6 @@
                 container: $("#container")
             });
         });
-
-        $('.searchBtn').click(){
-        	$('.search').css('display', 'block');
-        }
 	</script>
 
     <script type="text/javascript">
@@ -1009,9 +1097,19 @@
 			'padding': 140,
 			'tolerance': 70
 		});
+		var flag = 0;
+		
 		slideout.disableTouch();
+		slideout.close();
+
 		document.querySelector('.js-slideout-toggle').addEventListener('click', function() {
 			slideout.toggle();
+			if( !flag ){
+				$("#panel>div:nth-child(6)").css("display","block");
+			}else{
+				$("#panel>div:nth-child(6)").css("display","none");
+			}
+			flag = 1 - flag;
 		});
 
 		document.querySelector('.sideMenu').addEventListener('click', function(eve) {
@@ -1048,6 +1146,45 @@
 			preLeft += (touchCurX - touchX);
 			ul.style.left = preLeft + "px";
 			touchX = touchCurX;
+		});
+
+        $('.searchBtn').click( function (event) {
+        	$('.search').css('display', 'block');
+        });
+
+        var toLeftBtn = $(".toLeft")[0],
+        	toRightBtn = $(".toRight")[0],
+        	down = new Event('down');
+
+        toLeftBtn.addEventListener('down', function(){
+
+        });
+
+		$(toLeftBtn).mousedown( function (event) {
+
+			if( preLeft <= widthGap ){
+				return ;
+			}
+			preLeft -= 10;
+			ul.style.left = preLeft + "px";
+		});
+
+		$(toRightBtn).mousedown( function (event) {
+			if( preLeft >= 0 ){
+				return ;
+			}
+			preLeft += 10;
+			ul.style.left = preLeft + "px";
+		});
+
+		var searchBtn = document.querySelector('.searchBtn'),
+			searchDiv = document.querySelector('div.search');
+		$(searchBtn).click( function(event){
+			searchDiv.style.display = "block";
+		});
+
+		$("div.search>div:nth-child(1)>form>input:nth-child(3)").click(function(event){
+			searchDiv.style.display = "none";
 		});
     </script>
 @endsection
