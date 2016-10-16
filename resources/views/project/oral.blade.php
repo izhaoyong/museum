@@ -527,7 +527,40 @@
 			color: #b44242;
 			font-weight: bolder;
 		}
+
+		.tips{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			opacity: 0.9;
+			z-index: 999;
+			background-color: #b44242;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			visibility: hidden;
+		}
+
+		.tips>h3{
+			width: 30%;
+			color: black;
+		}
+
+		.tips>button{
+			margin-top: 30px;
+			color: black;
+		}
 	</style>
+
+	<div class="tips">
+		<h3>我们现在参观的是口传文化子馆，口传文化子馆是对北京地域口传文化进行研究。项目以数名土生土长的北京著名老艺人为采集对象，以老北京人聚居的城区为采集布点，观察、记录、描述、分析北京商业叫卖。...</h3>
+		<button class="know">知道了</button>
+	</div>
 
     <nav id="menu" class="sideMenu slideout-menu" style="background:#fff;">
       <section class="menu-section">
@@ -931,5 +964,21 @@
 		$("div.search>div:nth-child(1)>form>input:nth-child(3)").click(function(event){
 			searchDiv.style.display = "none";
 		});
+
+		$('.know').click(function(){
+			$('.tips').remove();
+		});
+
+		(function(){
+			$(document).ready(function(){
+				console.log('app');
+				var prepath = sessionStorage.getItem('path');
+				var path = location.pathname.split('/')[1];
+				if(path != prepath){
+					$('.tips').css('visibility','visible');
+					sessionStorage.setItem('path',path) ;
+				}
+			});
+		})();
     </script>
 @endsection

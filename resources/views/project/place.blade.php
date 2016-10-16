@@ -335,33 +335,6 @@
 		.detailButton:hover{
 			color: #777;
 		}
-
-		.mask{
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			left: 0;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			opacity: 0.9;
-			z-index: 999;
-			background-color: #b44242;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.mask>h3{
-			width: 30%;
-			color: black;
-		}
-
-		.mask>button{
-			margin-top: 30px;
-			color: black;
-		}
 	</style>
 
 	<style type="text/css">
@@ -540,10 +513,38 @@
 			color: #b44242;
 			font-weight: bolder;
 		}
+
+		.tips{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			opacity: 0.9;
+			z-index: 999;
+			background-color: #b44242;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			visibility: hidden;
+		}
+
+		.tips>h3{
+			width: 30%;
+			color: black;
+		}
+
+		.tips>button{
+			margin-top: 30px;
+			color: black;
+		}
 	</style>
 
-	<div class="mask">
-		<h3>项目介绍：本项目收集了北京市各个管辖区的地名，并对这些地名进行相应的历史典故介绍，同时附上每个地名对应的北京话发音和普通话发音。项目累计条目及照片2千余条。...</h3>
+	<div class="tips">
+		<h3>我们现在参观的是地名子馆，这个馆中收集了北京市各个管辖区的地名，并对这些地名进行相应的历史典故介绍，同时附上每个地名对应的北京话发音和普通话发音。项目累计条目及照片2千余条。...</h3>
 		<button class="know">知道了</button>
 	</div>
 
@@ -736,7 +737,7 @@
 			</nav>
 		</div>
 
-		<!-- <div class="mask"></div> -->
+		<div class="mask"></div>
 	</div>
 
 	<div class="search">
@@ -900,7 +901,6 @@
 	</script>
 
     <script type="text/javascript">
-    	(function(){
 			var slideout = new Slideout({
 				'panel': document.querySelector('#panel'),
 				'menu': document.querySelector('#menu'),
@@ -945,9 +945,19 @@
 			});
 
 			$('.know').click(function(){
-				$('.mask').css('visibility','hidden');
+				$('.tips').remove();
 			});
-    	})()
 
+			(function(){
+				$(document).ready(function(){
+					console.log('app');
+					var prepath = sessionStorage.getItem('path');
+					var path = location.pathname.split('/')[1];
+					if(path != prepath){
+						$('.tips').css('visibility','visible');
+						sessionStorage.setItem('path',path) ;
+					}
+				});
+			})();
     </script>
 @endsection

@@ -204,7 +204,7 @@
 			overflow: hidden;
 			background-color: #B29488;
 			transition-duration: 3s;
-			visibility: hidden;
+			/*visibility: hidden;*/
 		}
 
 		.leftDoor{
@@ -263,7 +263,25 @@
 		}
 
 		.will-hidden{
-			/*visibility: hidden;*/
+			/*background-color: #B29488;*/
+		}
+
+		@media screen and (max-width: 360px){
+			.pages>.content>h2{
+				font-size: 0.9em;
+			}	
+		}
+		
+		.picWrap{
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			/*display: none;*/
+			background-color: #B29488;
 		}
 	</style>
 
@@ -288,14 +306,6 @@
 		<section class="img-dragger img-dragger-large dragdealer">
 			<div class="handle" style="">
 				<div class="slide" data-content="content-1" style="">
-					<div class="img-wrap will-hidden"><img src="{{ asset('/assets/img/index/1.jpg')}}" alt="北京语言文化博物馆"/></div>
-					<h2 class="will-hidden">
-						<em>北京语言文化博物馆</em>
-						<img src="{{ asset('/assets/img/icon/logow.png')}}" class="logo">
-						<span>开启老北京文化的奇妙旅程</span>
-					</h2 class="will-hidden">
-					<button class="content-switch will-hidden"></button>
-
 					<div class="leftDoor door">
 						<div class="img-wrap"><img src="{{ asset('/assets/img/index/1.jpg')}}" alt="北京语言文化博物馆"/></div>
 						<h2>
@@ -315,6 +325,13 @@
 						</h2>
 						<button class="content-switch"></button>
 					</div>
+<!-- 					<div class="img-wrap will-hidden"><img src="{{ asset('/assets/img/index/1.jpg')}}" alt="北京语言文化博物馆"/></div>
+					<h2 class="will-hidden">
+						<em>北京语言文化博物馆</em>
+						<img src="{{ asset('/assets/img/icon/logow.png')}}" class="logo">
+						<span>开启老北京文化的奇妙旅程</span>
+					</h2 class="will-hidden">
+					<button class="content-switch will-hidden"></button> -->
 				</div>
 				
 				<div class="slide" data-content="content-2">
@@ -395,7 +412,7 @@
 		<section class="pages" style="position: absolute; top: 0px; height: 100%; z-index: -1">
 			<div class="content" data-content="content-1" style="padding-top: 30px; height:100%; overflow-y:auto;">
 				<button class="close">X</button>
-				<h2 style="padding-top: 50px;">北京语言文化数字博物馆简介</h2>
+				<h2 style="padding-top: 0px; padding-bottom: 20px">北京语言文化数字博物馆简介</h2>
 
 				<div>
 					<input type="text" name="search" placeholder="在此输入搜索内容" class="query" />
@@ -470,11 +487,35 @@
 	<script src="{{asset('js/classie-index.js')}}"></script>
 	<script src="{{asset('js/dragslideshow.js')}}"></script>
 	<script>
+		var prex = 0 , curx = 0, prey = 0, cury = 0, gapx , gapy ;
+		function openDoor(evt){
+			if ( gapx == 0 && gapy == 0 ) {
+				if (evt.currentTarget == $('.handle').children()[0]) {
+					$('.handle').css('background-color', 'transparent');
+					$('.handle>div:nth-child(1)').css('background-color', 'transparent');
+					$('.js .dragslider').css('background-color','transparent')
+
+					$('.leftDoor').addClass('rotate90');
+					$('.rightDoor').addClass('rotate180');
+
+					$('#header').css('z-index', -1);
+					$('.pages').css('z-index', 99);
+					setTimeout(function(){
+						$('.handle').css('visibility', 'hidden');
+						$('.dragdealer').css('visibility', 'hidden');
+						console.log('down');
+					}, 3000);
+					$(".handle>div:nth-child(1)").off('click');
+				}
+			}
+		}
+		
 		(function() {
 			var overlay = document.getElementById( 'overlay' ),
 				overlayClose = overlay.querySelector( 'button' ),
 				header = document.getElementById( 'header' ),
 				switchBtnn = header.querySelector( 'button.slider-switch' ),
+				toggled = 0,
 				toggleBtnn = function() {
 					if( slideshow.isFullscreen ) {
 						classie.add( switchBtnn, 'view-maxi' );
@@ -502,8 +543,13 @@
 					onToggleContentComplete : toggleCompleteCtrls
 				}),
 				toggleSlideshow = function() {
-					// $('.door').css('visibility','hidden');
-					// $('.will-hidden').css('visibility','visible');
+					if ( !toggled ) {
+						$(".handle>div:nth-child(1)").off('click');
+					}else{
+						$(".handle>div:nth-child(1)").on('click', openDoor);
+					}
+					toggled = 1 - toggled;
+
 					slideshow.toggle();
 					toggleBtnn();
 				},
@@ -515,12 +561,9 @@
 			switchBtnn.addEventListener( 'click', toggleSlideshow );
 			// close overlay
 			overlayClose.addEventListener( 'click', closeOverlay );
-		}());
-	</script>
-	<script type="text/javascript">
-		(function(){
+
 			var isMouseDown = false, curSlide = 0;
-			var prex = 0 , curx = 0, prey = 0, cury = 0, gapx , gapy ;
+			// var prex = 0 , curx = 0, prey = 0, cury = 0, gapx , gapy ;
 			$('.slide').mousedown(function( event){
 				isMouseDown = true;
 				prex = event.pageX;
@@ -558,7 +601,6 @@
 				$($(a).children()[0]).css('visibility','hidden');
 			});
 
-
 			if ( /mobile/ig.test(navigator.userAgent) ) {
 				console.log('mobile');
 
@@ -566,30 +608,8 @@
 		        	$(this).css('visibility', 'visible');
 		        });
 			}
-			
-			$(".handle>div:nth-child(1)").click(function (evt) {	
-				if ( gapx == 0 && gapy == 0 ) {
-					if (evt.currentTarget == $('.handle').children()[0]) {
-						$('.will-hidden').css('visibility','hidden');
-						$('.door').css('visibility', 'visible');
-
-						$('.handle').css('background-color', 'transparent');
-						$('.handle>div:nth-child(1)').css('background-color', 'transparent');
-						$('.js .dragslider').css('background-color','transparent')
-
-						$('.leftDoor').addClass('rotate90');
-						$('.rightDoor').addClass('rotate180');
-
-						$('#header').css('z-index', -1);
-						$('.pages').css('z-index', 99);
-						setTimeout(function(){
-							$('.handle').css('visibility', 'hidden');
-							$('.dragdealer').css('visibility', 'hidden');
-							console.log('down');
-						}, 3000);
-					}
-				}
-			});
+				
+			$(".handle>div:nth-child(1)").on('click', openDoor);
 
 			$('.search').click(function(evt){
 				console.log('jajdflkajdf');
@@ -616,12 +636,10 @@
 					$('.js .dragslider').css('background-color','#823030');
 					$('.handle>div:nth-child(1)').css('background-color', '#B29488');
 					$('.handle').css('background-color', 'white');
-
-					$('.door').css('visibility', 'hidden');
-					$('.will-hidden').css('visibility','visible');
+					$(".handle>div:nth-child(1)").on('click', openDoor);
 				}, 3000);
-
+				
 			});
-		})();
+		}());
 	</script>
 @endsection

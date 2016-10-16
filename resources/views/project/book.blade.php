@@ -504,7 +504,47 @@
 			color: #b44242;
 			font-weight: bolder;
 		}
+
+		.tips{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			opacity: 0.9;
+			z-index: 999;
+			background-color: #b44242;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			visibility: hidden;
+		}
+
+		.tips>h3{
+			width: 30%;
+			color: black;
+		}
+
+		.tips>button{
+			margin-top: 30px;
+			color: black;
+		}
+
+		@media screen and (max-width: 360px){
+			.header-hamburger>a>button{
+				font-size: 1.5em;
+			}		
+		}
+
 	</style>
+
+	<div class="tips">
+		<h3>我们现在参观的是文献子馆，子馆是对北京话研究历史文献叙录及目录进行归纳和整理。项目收集北京话研究历史文献的叙录及目录，进行资源建设与研究。共包括三个部分，分别是：直接记录现当代北京方言土语或口语的辞书和准辞书；用北京话撰写的文学作品中的语汇辞书和语汇索引书；清代国家机关主持编撰的多体《清文鉴》类辞书和准辞书的现代整理本。...</h3>
+		<button class="know">知道了</button>
+	</div>
 
     <nav id="menu" class="sideMenu slideout-menu" style="background:#fff;">
 		<section class="menu-section">
@@ -871,6 +911,23 @@
 		$("div.search>div:nth-child(1)>form>input:nth-child(3)").click(function(event){
 			searchDiv.style.display = "none";
 		});
+
+		$('.know').click(function(){
+			$('.tips').remove();
+		});
+
+		(function(){
+			$(document).ready(function(){
+				console.log('app');
+				var prepath = sessionStorage.getItem('path');
+				var path = location.pathname.split('/')[1];
+				if(path != prepath){
+					$('.tips').css('visibility','visible');
+					sessionStorage.setItem('path',path) ;
+				}
+			});
+		})();
     </script>
 
 @endsection
+
