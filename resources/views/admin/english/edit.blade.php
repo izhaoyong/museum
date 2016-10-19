@@ -24,6 +24,10 @@
             <input name="_method" type="hidden" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
+              <label for="englishcontent"><span class="label label-primary">照片标识:</span></label>
+              <input name="picture_id" id="englishpicture" rows="10" class="form-control" required="required" value="{{ $english->picture }}"></input>
+            </div>
+            <div class="form-group">
               <label for="englishcontent"><span class="label label-primary">内容:</span></label>
               <textarea name="content" id="englishcontent" rows="10" class="form-control" required="required">{{ $english->content }}</textarea>
             </div>

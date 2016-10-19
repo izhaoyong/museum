@@ -24,6 +24,10 @@
             <input name="_method" type="hidden" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
+              <label for="oldbeijingitem_id"><span class="label label-primary">item_id:</span></label>
+              <input type="text" name="item_id" id="oldbeijingitem_id" class="form-control" required="required" value="{{ $oldbeijing->item_id }}">
+            </div>
+            <div class="form-group">
               <label for="oldbeijingEntry"><span class="label label-primary">词条:</span></label>
               <input type="text" name="entry" id="oldbeijingEntry" class="form-control" required="required" value="{{ $oldbeijing->entry }}">
             </div>

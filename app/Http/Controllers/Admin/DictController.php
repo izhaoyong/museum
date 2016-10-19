@@ -50,15 +50,15 @@ class DictController extends Controller {
 		  $request->file('picture')->move( base_path().'/public/content/dict/image/', $picture);
 		  // File::copy( base_path().'/public/content/dict/picture/'.$picture,
 		  // 	base_path().'/public/content/dict/thumbnails/picture/'.$picture);
-		  $dict->dict_id = $dict->id;
+		  // $dict->dict_id = $dict->id;
 		}
 		if($request->file('sound')){
 			$sound = $dict->id . '.' .
 				$request->file('sound')->getClientOriginalExtension();
 			$request->file('sound')->move( base_path().'/public/content/dict/sound/', $sound);
-			$dict->dict_id = $dict->id;
+			// $dict->dict_id = $dict->id;
 		}
-
+		$dict->dict_id = Input::get('dict_id');
 		$dict->entry = Input::get('entry');
 		$dict->beijing_entry = Input::get('beijing_entry');
 		$dict->category = Input::get('category');
@@ -116,15 +116,15 @@ class DictController extends Controller {
 		  $request->file('picture')->move( base_path().'/public/content/dict/image/', $picture);
 		  // File::copy( base_path().'/public/content/dict/picture/'.$picture,
 		  // 	base_path().'/public/content/dict/thumbnails/picture/'.$picture);
-		  $dict->dict_id = $dict->id;
+		  // $dict->dict_id = $dict->id;
 		}
 		if($request->file('sound')){
 			$sound = $dict->id . '.' .
 				$request->file('sound')->getClientOriginalExtension();
 			$request->file('sound')->move( base_path().'/public/content/dict/sound/', $sound);
-			$dict->dict_id = $dict->id;
+			// $dict->dict_id = $dict->id;
 		}
-
+		$dict_id->dict_id = Input::get('dict_id');
 		$dict->entry = Input::get('entry');
 		$dict->beijing_entry = Input::get('beijing_entry');
 		$dict->pronunciation = Input::get('pronunciation');

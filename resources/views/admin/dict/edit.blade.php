@@ -24,6 +24,10 @@
             <input name="_method" type="hidden" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
+              <label for="dictEntry"><span class="label label-primary">dict_id:</span></label>
+              <input type="text" name="dict_id" id="dictDict_id" class="form-control" required="required" value="{{ $dict->dict_id }}">
+            </div>
+            <div class="form-group">
               <label for="dictEntry"><span class="label label-primary">词条:</span></label>
               <input type="text" name="entry" id="dictEntry" class="form-control" required="required" value="{{ $dict->entry }}">
             </div>

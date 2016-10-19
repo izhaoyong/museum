@@ -24,6 +24,10 @@
             <input name="_method" type="hidden" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
+              <label for="poempicture_name"><span class="label label-primary">图片名称:</span></label>
+              <input type="text" name="picture_name" id="poempicture_name" class="form-control" required="required" value="{{ $poem->picture }}">
+            </div>
+            <div class="form-group">
               <label for="poemtitle"><span class="label label-primary">标题:</span></label>
               <input type="text" name="title" id="poemtitle" class="form-control" required="required" value="{{ $poem->title }}">
             </div>

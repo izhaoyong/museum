@@ -48,7 +48,7 @@ class EnglishController extends Controller {
 				$request->file('picture')->getClientOriginalExtension();
 		  $request->file('picture')->move( base_path().'/public/content/english/picture/', $picture);
 		}
-		$english->picture = $english->id;
+		$english->picture = Input::get('picture_id');
 		$english->content = Input::get('content');
 		$english->function = Input::get('function');
 		$english->category1 = Input::get('category1');
@@ -110,7 +110,7 @@ class EnglishController extends Controller {
 				$request->file('picture')->getClientOriginalExtension();
 		  $request->file('picture')->move( base_path().'/public/content/english/picture/', $picture);
 		}
-		$english->picture = $english->id;
+		$english->picture = Input::get('picture_id');
 		$english->content = Input::get('content');
 		$english->function = Input::get('function');
 		$english->category1 = Input::get('category1');

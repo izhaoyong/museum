@@ -51,7 +51,7 @@ class poemController extends Controller {
 		  // $poem->picture = "picture/".$picture;
 
 		}
-		$poem->picture = $poem->id;
+		$poem->picture = Input::get('picture_name');
 		$poem->title = Input::get('title');
 		$poem->content = Input::get('content');
 		$poem->comment = Input::get('comment');
@@ -110,7 +110,7 @@ class poemController extends Controller {
 		  // $poem->picture = "picture/".$picture;
 
 		}
-		$poem->picture = $poem->id;
+		$poem->picture = Input::get('picture_name');
 		$poem->title = Input::get('title');
 		$poem->content = Input::get('content');
 		$poem->comment = Input::get('comment');

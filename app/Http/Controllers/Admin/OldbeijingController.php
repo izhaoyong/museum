@@ -49,15 +49,15 @@ class OldbeijingController extends Controller {
 		  $request->file('picture')->move( base_path().'/public/content/oldbeijing/image/', $picture);
 		  // File::copy( base_path().'/public/content/oldbeijing/picture/'.$picture,
 		  // 	base_path().'/public/content/oldbeijing/thumbnails/picture/'.$picture);
-		  $oldbeijing->item_id = $oldbeijing->id;
+		  // $oldbeijing->item_id = $oldbeijing->id;
 		}
 		if($request->file('sound')){
 			$sound = $oldbeijing->id . '.' .
 				$request->file('sound')->getClientOriginalExtension();
 			$request->file('sound')->move( base_path().'/public/content/oldbeijing/sound/', $sound);
-			$oldbeijing->item_id = $oldbeijing->id;
+			// $oldbeijing->item_id = $oldbeijing->id;
 		}
-
+		$oldbeijing->item_id = Input::get('item_id');
 		$oldbeijing->entry = Input::get('entry');
 		$oldbeijing->beijing_entry = Input::get('beijing_entry');
 		$oldbeijing->category = Input::get('category');
@@ -113,15 +113,15 @@ class OldbeijingController extends Controller {
 		  $request->file('picture')->move( base_path().'/public/content/oldbeijing/image/', $picture);
 		  // File::copy( base_path().'/public/content/oldbeijing/picture/'.$picture,
 		  // 	base_path().'/public/content/oldbeijing/thumbnails/picture/'.$picture);
-		  $oldbeijing->item_id = $oldbeijing->id;
+		  // $oldbeijing->item_id = $oldbeijing->id;
 		}
 		if($request->file('sound')){
 			$sound = $oldbeijing->id . '.' .
 				$request->file('sound')->getClientOriginalExtension();
 			$request->file('sound')->move( base_path().'/public/content/oldbeijing/sound/', $sound);
-			$oldbeijing->item_id = $oldbeijing->id;
+			// $oldbeijing->item_id = $oldbeijing->id;
 		}
-
+		$oldbeijing->item_id = Input::get('item_id');
 		$oldbeijing->entry = Input::get('entry');
 		$oldbeijing->beijing_entry = Input::get('beijing_entry');
 		$oldbeijing->pronunciation = Input::get('pronunciation');
