@@ -50,7 +50,7 @@ class BookController extends Controller {
 		  $request->file('fengmian')->move( base_path().'/public/content/book/fengmian/', $fengmian);
 		  File::copy( base_path().'/public/content/book/fengmian/'.$fengmian,
 		  	base_path().'/public/content/book/thumbnails/fengmian/'.$fengmian);
-		  $book->fengmian = "fengmian/".$fengmian;
+		  // $book->fengmian = "fengmian/".$fengmian;
 		}
 
 		if($request->file('mulu')){
@@ -59,9 +59,10 @@ class BookController extends Controller {
 			$request->file('mulu')->move( base_path().'/public/content/book/mulu/', $mulu);
 			// File::copy( base_path().'/public/content/book/thumbnails/mulu/'.$mulu,
 		 //  	base_path().'/public/content/book/thumbnails/mulu/'.$mulu);
-			$book->mulu = "mulu/".$mulu;
+			// $book->mulu = "mulu/".$mulu;
 		}
-		
+		$book->fengmian = Input::get('fengmian');
+		$book->mulu = Input::get('mulu');
 		$book->type = Input::get('type');
 		$book->title = Input::get('title');
 		$book->author = Input::get('author');
@@ -121,7 +122,7 @@ class BookController extends Controller {
 		  $request->file('fengmian')->move( base_path().'/public/content/book/fengmian/', $fengmian);
 		  File::copy( base_path().'/public/content/book/fengmian/'.$fengmian,
 		  	base_path().'/public/content/book/thumbnails/fengmian/'.$fengmian);
-		  $book->fengmian = "fengmian/".$fengmian;
+		  // $book->fengmian = "fengmian/".$fengmian;
 		}
 		if($request->file('mulu')){
 			$mulu = 'm'.$book->id . '.' .
@@ -129,13 +130,14 @@ class BookController extends Controller {
 			$request->file('mulu')->move( base_path().'/public/content/book/mulu/', $mulu);
 			// File::copy( base_path().'/public/content/book/thumbnails/mulu/'.$mulu,
 		 //  	base_path().'/public/content/book/thumbnails/mulu/'.$mulu);
-			$book->mulu = "mulu/".$mulu;
+			// $book->mulu = "mulu/".$mulu;
 		}
 		// if($request->file('pdf')){
 		// 	$pdf = "pdf\/".$book->id . '.' .
 		// 	$request->file('pdf')->getClientOriginalExtension();
 		// }
-
+		$book->fengmian = Input::get('fengmian');
+		$book->mulu = Input::get('mulu');
 		$book->type = Input::get('type');
 		$book->title = Input::get('title');
 		$book->author = Input::get('author');

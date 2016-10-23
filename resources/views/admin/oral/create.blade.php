@@ -23,6 +23,10 @@
           <form action="{{ URL('admin/oral') }}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
+              <label for="oralvideo"><span class="label label-primary">图片和视频名:</span></label>
+              <input type="text" name="video" id="oralvideo" class="form-control" required="required">
+            </div>
+            <div class="form-group">
               <label for="oralname"><span class="label label-primary">叫卖物:</span></label>
               <input type="text" name="name" id="oralname" class="form-control" required="required">
             </div>
@@ -35,10 +39,6 @@
               <input type="file" name="picture" id="oralPicture" onchange="previewFile(this);">
               <br> 
               <img class="img-preview" src="" height="200px" alt="预览" onerror="imgError(this);">
-            </div>
-            <div class="form-group">
-              <label for="oralvideo"><span class="label label-primary">视频名:</span></label>
-              <input type="text" name="video" id="oralvideo" class="form-control" required="required">
             </div>
             <div class="form-group">
               <label for="oralvideofile"><span class="label label-primary">视频文件：</span></label>

@@ -24,8 +24,16 @@
             <input name="_method" type="hidden" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
+              <label for="bookfengmian"><span class="label label-primary">封面图片名:</span></label>
+              <input type="text" name="fengmian" id="bookfengmian" class="form-control" value="{{ $book->fengmian }}">
+            </div>
+            <div class="form-group">
+              <label for="bookmulu"><span class="label label-primary">目录图片名:</span></label>
+              <input type="text" name="mulu" id="bookmulu" class="form-control" value="{{ $book->mulu }}">
+            </div>
+            <div class="form-group">
               <label for="bookType"><span class="label label-primary">类型:</span></label>
-              <input type="text" name="type" id="bookType" class="form-control" required="required" value="{{ $book->type }}">
+              <input type="text" name="type" id="bookType" class="form-control" value="{{ $book->type }}">
             </div>
             <div class="form-group">
               <label for="bookTitle"><span class="label label-primary">书名:</span></label>
@@ -49,7 +57,7 @@
             </div>
             <div class="form-group">
               <label for="bookIntroduction"><span class="label label-primary">介绍:</span></label>
-              <textarea name="introduction" id="bookIntroduction" rows="10" class="form-control" required="required">{{ $book->introduction }}</textarea>
+              <textarea name="introduction" id="bookIntroduction" rows="10" class="form-control">{{ $book->introduction }}</textarea>
             </div>
             <div class="form-group">
               <label for="bookTitle"><span class="label label-primary">注:</span></label>

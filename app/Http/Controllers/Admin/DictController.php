@@ -124,7 +124,7 @@ class DictController extends Controller {
 			$request->file('sound')->move( base_path().'/public/content/dict/sound/', $sound);
 			// $dict->dict_id = $dict->id;
 		}
-		$dict_id->dict_id = Input::get('dict_id');
+		$dict->dict_id = Input::get('dict_id');
 		$dict->entry = Input::get('entry');
 		$dict->beijing_entry = Input::get('beijing_entry');
 		$dict->pronunciation = Input::get('pronunciation');

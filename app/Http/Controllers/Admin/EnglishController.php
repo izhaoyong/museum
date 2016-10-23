@@ -100,7 +100,7 @@ class EnglishController extends Controller {
 	public function update(Request $request,$id)
 	{
 		$this->validate($request, [
-			'content' => 'required|unique:englishes,content,'.$id.'|max:255',
+			'content' => 'required',
 			'function' => 'required',
 		]);
 

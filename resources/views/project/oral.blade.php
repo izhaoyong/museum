@@ -3,7 +3,7 @@
 @section('content')
 @if ($search)
 	<div class="container">
-		<p>数据：<strong>{{$search."\t"}}</strong> 搜索到{{ count($orlas)}}条结果:</p>
+		<p>数据：<strong>{{$search."\t"}}</strong> 搜索到{{ count($orals)}}条结果:</p>
 	</div>
 	@endif
 

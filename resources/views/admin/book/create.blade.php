@@ -23,8 +23,16 @@
           <form action="{{ URL('admin/book') }}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
+              <label for="bookfengmian"><span class="label label-primary">封面图片名:</span></label>
+              <input type="text" name="fengmian" id="bookfengmian" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="bookmulu"><span class="label label-primary">目录图片名:</span></label>
+              <input type="text" name="mulu" id="bookmulu" class="form-control">
+            </div>
+            <div class="form-group">
               <label for="bookType"><span class="label label-primary">类型:</span></label>
-              <input type="text" name="type" id="bookType" class="form-control" required="required">
+              <input type="text" name="type" id="bookType" class="form-control">
             </div>
             <div class="form-group">
               <label for="bookTitle"><span class="label label-primary">书名:</span></label>

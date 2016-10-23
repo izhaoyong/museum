@@ -24,6 +24,10 @@
             <input name="_method" type="hidden" value="PUT">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
+              <label for="oralvideo"><span class="label label-primary">图片名和视频名:</span></label>
+              <input type="text" name="video" id="oralvideo" class="form-control" required="required" value="{{ $oral->video }}">
+            </div>
+            <div class="form-group">
               <label for="oralname"><span class="label label-primary">叫卖物:</span></label>
               <input type="text" name="name" id="oralname" class="form-control" required="required" value="{{ $oral->name }}">
             </div>
@@ -38,10 +42,7 @@
               <br> 
               <img class="img-preview" src="{{ asset('content/oral/picture')."/".$oral->speaker.'\\'.$oral->video }}.jpg" height="200px" alt="预览" onerror="imgError(this);">
             </div>
-            <div class="form-group">
-              <label for="oralvideo"><span class="label label-primary">视频名:</span></label>
-              <input type="text" name="video" id="oralvideo" class="form-control" required="required" value="{{ $oral->video }}">
-            </div>
+            
             <div class="form-group">
               <label for="oralvideofile"><span class="label label-primary">视频文件：</span></label>
               <input id="file" type="file" name="videofile" id="oralvideofile">
