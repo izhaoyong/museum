@@ -61,9 +61,10 @@ class EnglishController extends Controller {
 		$english->user_id = Auth::user()->id;
 
 
-
+		$page_id = intval($english->id / 20)+1;
 		if ($english->save()) {
-			return Redirect::to('admin/english');
+			// return Redirect::to('admin/english');
+			return Redirect::to('admin/english/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}
@@ -120,9 +121,10 @@ class EnglishController extends Controller {
 		$english->commentator = Input::get('commentator');
 		$english->place = Input::get('place');
 		$english->user_id = Auth::user()->id;
-
+		$page_id = intval($english->id / 20)+1;
 		if ($english->save()) {
-			return Redirect::to('admin/english');
+			// return Redirect::to('admin/english');
+			return Redirect::to('admin/english/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}

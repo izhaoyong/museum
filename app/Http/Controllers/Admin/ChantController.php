@@ -65,8 +65,10 @@ class ChantController extends Controller {
 		// $chant->media_class = Input::get('media_class');
 		$chant->category = Input::get('category');
 		$chant->chanter = Input::get('chanter');
+		$page_id = intval($chant->id / 20)+1;
 		if($chant->save()) {
-			return Redirect::to('admin/chant');
+			// return Redirect::to('admin/chant');
+			return Redirect::to('admin/chant/?page='.$page_id);
 		}else {
 			return Redirect::back()->withInput() ->withErrors('save fail');
 		}
@@ -104,7 +106,6 @@ class ChantController extends Controller {
 	{
 		$this->validate($request, [
 			'title' => 'required|unique:chants,title,'.$id.'|max:255',
-			'author' => 'required',
 		]);
 
 		$chant = chant::find($id);
@@ -133,9 +134,10 @@ class ChantController extends Controller {
 		$chant->category = Input::get('category');
 		$chant->chanter = Input::get('chanter');
 		$chant->user_id = Auth::user()->id;
-
+		$page_id = intval($chant->id / 20)+1;
 		if ($chant->save()) {
-			return Redirect::to('admin/chant');
+			// return Redirect::to('admin/chant');
+			return Redirect::to('admin/chant/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}

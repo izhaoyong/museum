@@ -69,9 +69,10 @@ class OralController extends Controller {
 		$oral->content = Input::get('content');
 
 		$oral->user_id = Auth::user()->id;
-
+		$page_id = intval($oral->id / 20)+1;
 		if ($oral->save()) {
-			return Redirect::to('admin/oral');
+			// return Redirect::to('admin/oral');
+			return Redirect::to('admin/oral/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}
@@ -138,9 +139,10 @@ class OralController extends Controller {
 		$oral->user_id = Auth::user()->id;
 
 		
-
+		$page_id = intval($oral->id / 20)+1;
 		if ($oral->save()) {
-			return Redirect::to('admin/oral');
+			// return Redirect::to('admin/oral');
+			return Redirect::to('admin/oral/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}

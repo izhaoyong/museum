@@ -29,7 +29,7 @@
             <br>
             <a href="{{ URL('admin/oral/'.$oral->id.'/edit') }}" class="btn btn-success">编辑</a>
 
-            <form action="{{ URL('admin/oral/'.$oral->id) }}" method="POST" style="display: inline;">
+            <form action="{{ URL('admin/oral/'.$oral->id) }}" method="POST" style="display: inline;margin-left: 200px"">
               <input name="_method" type="hidden" value="DELETE">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <button type="submit" class="btn btn-danger">删除</button>

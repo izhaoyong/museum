@@ -62,9 +62,10 @@ class OldbeijingController extends Controller {
 		$oldbeijing->beijing_entry = Input::get('beijing_entry');
 		$oldbeijing->category = Input::get('category');
 		$oldbeijing->interpretation = Input::get('interpretation');
-
+		$page_id = intval($oldbeijing->id / 20)+1;
 		if ($oldbeijing->save()) {
-			return Redirect::to('admin/oldbeijing');
+			// return Redirect::to('admin/oldbeijing');
+			return Redirect::to('admin/oldbeijing/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}
@@ -129,9 +130,10 @@ class OldbeijingController extends Controller {
 		$oldbeijing->interpretation = Input::get('interpretation');
 
 		$oldbeijing->user_id = Auth::user()->id;
-
+		$page_id = intval($oldbeijing->id / 20)+1;
 		if ($oldbeijing->save()) {
-			return Redirect::to('admin/oldbeijing');
+			// return Redirect::to('admin/oldbeijing');
+			return Redirect::to('admin/oldbeijing/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}

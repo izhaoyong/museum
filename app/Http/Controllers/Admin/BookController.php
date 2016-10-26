@@ -71,9 +71,10 @@ class BookController extends Controller {
 		$book->introduction = Input::get('introduction');
 		$book->note = Input::get('note');
 		$book->user_id = Auth::user()->id;
-
+		$page_id = intval($book->id / 20)+1;
 		if ($book->save()) {
-			return Redirect::to('admin/book');
+			// return Redirect::to('admin/book');
+			return Redirect::to('admin/book/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}
@@ -149,12 +150,13 @@ class BookController extends Controller {
 		// $book->pdf = $pdf;
 		$book->user_id = Auth::user()->id;
 
-		
+		$page_id = intval($book->id / 20)+1;
 		
 		// $request->file('pdf')->move(asset('content/book\/'), $pdf);
 
 		if ($book->save()) {
-			return Redirect::to('admin/book');
+			// return Redirect::to('admin/book');
+			return Redirect::to('admin/book/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}

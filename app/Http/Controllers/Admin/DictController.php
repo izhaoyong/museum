@@ -39,7 +39,7 @@ class DictController extends Controller {
 	public function store(Request $request)
 	{
 		$this->validate($request, [
-			'entry' => 'required|unique:dicts|max:255',
+			// 'entry' => 'required|unique:dicts|max:255',
 			// 'interpretation' => 'required',
 		]);
 
@@ -65,9 +65,9 @@ class DictController extends Controller {
 		$dict->interpretation = Input::get('interpretation');
 
 		$dict->user_id = Auth::user()->id;
-
+		$page_id = intval($dict->id / 20)+1;
 		if ($dict->save()) {
-			return Redirect::to('admin/dict');
+			return Redirect::to('admin/dict/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}
@@ -104,7 +104,7 @@ class DictController extends Controller {
 	public function update(Request $request,$id)
 	{
 		$this->validate($request, [
-			'entry' => 'required|unique:dicts,entry,'.$id.'|max:255',
+			// 'entry' => 'required|unique:dicts,entry,'.$id.'|max:255',
 			'interpretation' => 'required',
 		]);
 
@@ -133,8 +133,10 @@ class DictController extends Controller {
 
 		$dict->user_id = Auth::user()->id;
 
+		$page_id = intval($dict->id / 20)+1;
+		// echo $page_id;
 		if ($dict->save()) {
-			return Redirect::to('admin/dict');
+			return Redirect::to('admin/dict/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}

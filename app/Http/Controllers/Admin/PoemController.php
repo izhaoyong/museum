@@ -59,9 +59,10 @@ class poemController extends Controller {
 		$poem->author = Input::get('author');
 		$poem->category = Input::get('category');
 		$poem->user_id = Auth::user()->id;
-
+		$page_id = intval($poem->id / 20)+1;
 		if ($poem->save()) {
-			return Redirect::to('admin/poem');
+			// return Redirect::to('admin/poem');
+			return Redirect::to('admin/poem/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}
@@ -118,9 +119,10 @@ class poemController extends Controller {
 		$poem->author = Input::get('author');
 		$poem->category = Input::get('category');
 		$poem->user_id = Auth::user()->id;
-
+		$page_id = intval($poem->id / 20)+1;
 		if ($poem->save()) {
-			return Redirect::to('admin/poem');
+			// return Redirect::to('admin/poem');
+			return Redirect::to('admin/poem/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}

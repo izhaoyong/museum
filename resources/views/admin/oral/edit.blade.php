@@ -100,7 +100,7 @@
   },false);
 
   request.addEventListener('load', function(e){
-    window.location = "{{ URL('admin/oral')}}";
+    window.location = "{{ URL('admin/oral/?page='.intval($oral->id/20+1))}}";
   }, false);
   var file = document.getElementById("file");
 

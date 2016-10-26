@@ -65,9 +65,10 @@ class PlaceController extends Controller {
 		$place->description = Input::get('description');
 		$place->explaination = Input::get('explaination');
 		$place->user_id = Auth::user()->id;
-
+		$page_id = intval($place->id / 20)+1;
 		if ($place->save()) {
-			return Redirect::to('admin/place');
+			// return Redirect::to('admin/place');
+			return Redirect::to('admin/place/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}
@@ -131,9 +132,10 @@ class PlaceController extends Controller {
 		$place->description = Input::get('description');
 		$place->explaination = Input::get('explaination');
 		$place->user_id = Auth::user()->id;
-
+		$page_id = intval($place->id / 20)+1;
 		if ($place->save()) {
-			return Redirect::to('admin/place');
+			// return Redirect::to('admin/place');
+			return Redirect::to('admin/place/?page='.$page_id);
 		} else {
 			return Redirect::back()->withInput()->withErrors('保存失败！');
 		}
