@@ -95,6 +95,10 @@
               <br>
             </div>
             @else
+            <div class="form-group">
+              <label for="chantmedia"><span class="label label-primary">文件名:</span></label>
+              <input type="text" name="media" id="chantmedia" class="form-control" required="required" value="{{ $chant->media }}">
+            </div>
             @endif
             
             <div class="form-group">
