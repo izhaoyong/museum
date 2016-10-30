@@ -37,7 +37,7 @@ class OralController extends Controller {
 	public function store(Request $request)
 	{
 		$this->validate($request, [
-			'name' => 'required|unique:orals|max:255',
+			// 'name' => 'required|unique:orals|max:255',
 			'video' => 'required',
 			'speaker' => 'required',
 		]);
@@ -109,7 +109,7 @@ class OralController extends Controller {
 	public function update(Request $request,$id)
 	{
 		$this->validate($request, [
-			'name' => 'required|unique:orals,name,'.$id.'|max:255',
+			// 'name' => 'required|unique:orals,name,'.$id.'|max:255',
 			'video' => 'required',
 		]);
 
