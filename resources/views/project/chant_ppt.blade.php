@@ -20,6 +20,10 @@
 		.list-group-item>a:hover{
 			color: #B44242;
 		}
+
+		#theGrid{
+			overflow-y: auto;
+		}
 	</style>
 	<div>
 		<ul id="pdfgallery">
