@@ -726,13 +726,17 @@
 
 						<div class="picture">
 							<video class="video" controls preload="none">
-								<source src="{{ asset('content/oral/video')."/".$oral->speaker.'/'.$oral->video.'.mp4' }}"  />
-								<source src="{{ asset('content/oral/video')."/".$oral->speaker.'/'.$oral->video.'.ogg' }}"  />
-								<source src="{{ asset('content/oral/video')."/".$oral->speaker.'/'.$oral->video.'.webm' }}"  />
+								<source src="{{ asset('content/oral/video').'/'.$oral->speaker.'/'.$oral->video.'.mp4' }}"  />
+								<source src="{{ asset('content/oral/video').'/'.$oral->speaker.'/'.$oral->video.'.ogg' }}"  />
+								<source src="{{ asset('content/oral/video').'/'.$oral->speaker.'/'.$oral->video.'.webm' }}"  />
+								<track src="{{ asset('content/oral/xml').'/'.$oral->speaker.'/'.$oral->xml.'.vtt' }}"  kind="subtitles" srclang="zh" label="简体中文" default>
 							</video>
 						</div>
 						<?php 
-							$file = public_path().'/content/oral/xml/'.$oral->speaker.'/'.$oral->xml.'.xml';
+							$file = join(DIRECTORY_SEPARATOR, [public_path(), 'content', 'oral', 'xml', $oral->speaker, $oral->xml.'.xml']);
+							//$file = public_path().'/content/oral/xml/'.'陈首安'.'/约又卤鸡.xml';
+							$file =iconv('UTF-8', 'GBK', $file);
+							//$file = public_path().'/content/oral/xml/'.$oral->speaker.'/'.$oral->xml.'.xml';
 							$subtitle = '';
 							$subtitleXML = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1"  xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling">
 							  <head>
@@ -745,27 +749,27 @@
 							   </div>
 							  </body>
 							</tt>');
-							// echo $subtitleXML;
+							//echo basename($file);
+							//echo readfile($file);
+							//echo $safe_mode_include_dir;
+							//var_dump(file_exists($file));
 							if(file_exists($file)){
+								//echo "file";
 								$xml = simplexml_load_file($file);
-
 								foreach($xml->cue as $cue){
 									$subtitle .= $cue->subtitle;
 									$p = $subtitleXML->body->div[0]->addChild('p',$cue->subtitle);
 									$p->addAttribute("begin",$cue['time']);
 									$p->addAttribute("style","1");
 								}
-								if(!is_dir(public_path().'/content/oral/subtitle/'.$oral->speaker.'/')){
-									mkdir(public_path().'/content/oral/subtitle/'.$oral->speaker.'/');
-								}
-								$subtitle_file = public_path().'/content/oral/subtitle/'.$oral->speaker.'/'.$oral->name.'.xml';
-								file_put_contents($subtitle_file, $subtitleXML->asXML());
+								//echo $subtitle;
+								//$subtitle_file = public_path().'/content/oral/subtitle/'.$oral->speaker.'/'.$oral->name.'.xml';
+								//file_put_contents($subtitle_file, $subtitleXML->asXML());
 							}else{
 								$xml = "不存在";
 							}
-							$subtitle = $subtitle;
-
-							// $oral->save();
+							//echo $subtitle;
+							//$subtitle = $subtitle;
 						?>
 						<div class="detail" style="max-height: calc(85vh - 60px); overflow:auto;">
 							<h2 class="title title--full">{{ $subtitle }}</h2>

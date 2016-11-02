@@ -56,6 +56,7 @@ class OralController extends Controller {
 	{
 		$oral = oral::find($id);
 		$file = public_path().'/content/oral/xml/'.$oral->speaker.'/'.$oral->xml.'.xml';
+		$file =iconv('UTF-8', 'GBK', $file);
 		$subtitle = '';
 		$subtitleXML = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1"  xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling">
 		  <head>
@@ -78,8 +79,10 @@ class OralController extends Controller {
 				$p->addAttribute("begin",$cue['time']);
 				$p->addAttribute("style","1");
 			}
-			if(!is_dir(public_path().'/content/oral/subtitle/'.$oral->speaker.'/')){
-				mkdir(public_path().'/content/oral/subtitle/'.$oral->speaker.'/');
+			$dirPath = public_path().'/content/oral/subtitle/'.$oral->speaker.'/';
+			$dirPath =iconv('UTF-8', 'GBK', $dirPath);
+			if(!is_dir($dirPath)){
+				mkdir($dirPath);
 			}
 			$subtitle_file = public_path().'/content/oral/subtitle/'.$oral->speaker.'/'.$oral->name.'.xml';
 			file_put_contents($subtitle_file, $subtitleXML->asXML());
