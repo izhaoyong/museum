@@ -39,7 +39,7 @@ class poemController extends Controller {
 	public function store(Request $request)
 	{
 		$this->validate($request, [
-			'title' => 'required|unique:poems|max:255',
+			// 'title' => 'required|unique:poems|max:255',
 			'content' => 'required',
 		]);
 
@@ -99,7 +99,7 @@ class poemController extends Controller {
 	public function update(Request $request,$id)
 	{
 		$this->validate($request, [
-			'title' => 'required|unique:poems,title,'.$id.'|max:255',
+			// 'title' => 'required|unique:poems,title,'.$id.'|max:255',
 			'content' => 'required',
 		]);
 
