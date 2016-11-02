@@ -40,7 +40,7 @@ class PlaceController extends Controller {
 	public function store(Request $request)
 	{
 		$this->validate($request, [
-			'name' => 'required|unique:places|max:255',
+			// 'name' => 'required|unique:places|max:255',
 			'description' => 'required',
 		]);
 
@@ -105,7 +105,7 @@ class PlaceController extends Controller {
 	public function update(Request $request,$id)
 	{
 		$this->validate($request, [
-			'name' => 'required|unique:places,name,'.$id.'|max:255',
+			// 'name' => 'required|unique:places,name,'.$id.'|max:255',
 			'description' => 'required',
 		]);
 
