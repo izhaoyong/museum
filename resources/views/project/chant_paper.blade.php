@@ -69,10 +69,16 @@
 				// echo "<br>".$basename."<br>";
 				// echo $filename."<br>";
 			?>
-			<li class="list-group-item"><a href="paper/{{$basename}}"><?php echo $arr_paper[$filename.'']; ?></a> </li>
+			<li class="list-group-item">
+				<a href="/web/viewer.html?file=/content/chant/paper/{{$basename}}" target="_blank">
+					<?php 
+						echo $arr_paper[$filename.'']; 
+					?>
+				</a>
+			</li>
 
 			@endforeach
-			<iframe id="placeholder" src="" width="100%" height="600px" frameborder="0" ></iframe>
+<!-- 			<iframe id="placeholder" src="" width="100%" height="600px" frameborder="0" ></iframe> -->
 		</ul>
 	</div>
 

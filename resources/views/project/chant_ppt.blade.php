@@ -47,7 +47,7 @@
 				$filename = pathinfo($ppt, PATHINFO_FILENAME); 
 			?>
 			<li class="list-group-item">
-				<a href="ppt/{{$basename}}">
+				<a href="/web/viewer.html?file=/content/chant/ppt/{{$basename}}" target="_blank">
 					<?php 
 						echo $arr_paper[$filename.'']; 
 					?>
@@ -55,7 +55,7 @@
 			</li>
 
 			@endforeach
-			<iframe id="placeholder" src="" width="100%" height="600px" frameborder="0" ></iframe>
+<!-- 			<iframe id="placeholder" src="" width="100%" height="600px" frameborder="0" ></iframe> -->
 		</ul>
 	</div>
 @endsection
