@@ -106,48 +106,8 @@
 			background-color: #B44242;
 		}
 
-		.pagination>li:nth-child(4){
-			display: none;
-		}
-
-		.pagination>li:nth-child(5){
-			display: none;
-		}
-
-		.pagination>li:nth-child(6){
-			display: none;
-		}
-
-		.pagination>li:nth-child(7){
-			display: none;
-		}
-
-		.pagination>li:nth-child(8){
-			display: none;
-		}
-
-		.pagination>li:nth-child(9){
-			display: none;
-		}
-
 		span.fa-chevron-left:before{
 			font-family: 'fontawesome';
-		}
-
-		.pagination>li:nth-last-child(4){
-			display: inline;
-		}
-
-		.pagination>li:nth-last-child(3){
-			display: inline;
-		}
-
-		.pagination>li:nth-last-child(2){
-			display: inline;
-		}
-
-		.pagination>li:nth-last-child(1){
-			display: inline;
 		}
 		
 		.nav{
@@ -719,6 +679,45 @@
 		var grid__item = $('.grid__item');
 		var length = grid__item.length;
 		var where = ['place','book','chant','poem','dict','english','oral','oldbeijing'];
+		var paginationUL = $('nav>ul>ul.pagination');
+		var lis = paginationUL.children();
+		if( lis.length > 7){
+			var lisLength = lis.length,
+				paginationLi = ul[0].querySelector("li.active"),
+				paginationLiIndex = +paginationLi.children[0].innerHTML,
+				paginationFirst = lis[1],
+				paginationFirstIndex = +lis[1].children[0].innerHTML,
+				paginationLast = lis[lisLength - 2],
+				paginationLastIndex = +lis[lisLength - 2].children[0].innerHTML;
+				
+			if(paginationLiIndex == 2 || paginationLiIndex == 3 || paginationLiIndex == 1){
+				lis[4].children[0].innerHTML = "...";
+				lis[4].children[0].classList.add('disabled');
+				$(lis).each(function(index, ele){
+					if (index > 4 && index < lisLength - 2) {
+						$(ele).css("display", "none");	
+					}
+				});
+			}else if(paginationLiIndex == paginationLastIndex - 1 || paginationLiIndex == paginationLastIndex - 2 || paginationLiIndex == paginationLastIndex){
+				lis[2].children[0].innerHTML = "...";
+				lis[2].children[0].classList.add('disabled');
+				$(lis).each(function(index, ele){
+					if (index > 2 && index < lisLength - 4){
+						$(ele).css("display", "none");	
+					}
+				});
+			}else{
+				lis[2].children[0].innerHTML = "...";
+				lis[2].children[0].classList.add('disabled');
+				$(lis).each(function(index, ele){
+					if (index > 2 && index < lisLength - 3 && !$(ele).hasClass("active") ) {
+						$(ele).css("display", "none");
+					}
+				});
+				lis[lisLength - 3].children[0].innerHTML = "...";
+				lis[lisLength - 3].children[0].classList.add('disabled');
+			}
+		}
 	</script>
 
 	<script src="{{ asset('/js/classie-places.js')}}"></script>

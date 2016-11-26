@@ -95,54 +95,14 @@
 			min-width: 50vh;
 		}
 
-		.pagination>li>a, .pagination>li>span{
-			color: #B44242 !important;
+		.pagination>li>a,.pagination>li>span{
+			color: #B44242;
 		}
 	
 		.pagination>li>a:hover{
-			color: #B44242	!important;
+			color: #B44242;	
 		}
-
-		.pagination>li:nth-child(4){
-			display: none;
-		}
-
-		.pagination>li:nth-child(5){
-			display: none;
-		}
-
-		.pagination>li:nth-child(6){
-			display: none;
-		}
-
-		.pagination>li:nth-child(7){
-			display: none;
-		}
-
-		.pagination>li:nth-child(8){
-			display: none;
-		}
-
-		.pagination>li:nth-child(9){
-			display: none;
-		}
-
-		.pagination>li:nth-last-child(4){
-			display: inline;
-		}
-
-		.pagination>li:nth-last-child(3){
-			display: inline;
-		}
-
-		.pagination>li:nth-last-child(2){
-			display: inline;
-		}
-
-		.pagination>li:nth-last-child(1){
-			display: inline;
-		}
-		
+				
 		.pagination>.active>span,.pagination>.active>span:hover{
 			border-color: #B44242;
 			background-color: #B44242;
@@ -545,21 +505,13 @@
       <section class="menu-section">
         <ul class="menu-section-list">
 			<li><a  href="/">首页</a></li>
-
 			<li><a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">地名</a></li>
-
 			<li><a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">北京话文献</a></li>
-
 			<li><a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">吟诵</a></li>
-
 			<li><a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">清代御诗</a></li>
-
 			<li><a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">土语词典</a></li>
-
 			<li><a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">外语</a></li>
-
 			<li><a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">口传文化</a></li>
-
 			<li><a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">话说老北京</a></li>		
         </ul>
       </section>
@@ -578,57 +530,15 @@
 
 	        <div class="navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
-					<li>
-						<a  href="/">首页</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">
-							地名
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">
-							北京话文献
-						</a>
-					</li>
-
-					<li>
-						<a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">
-							吟诵
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">
-							清代御诗
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">
-							土语词典
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">
-							外语
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">
-							口传文化
-						</a>
-					</li>
-
-					<li>
-						<a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">
-							话说老北京
-						</a>
-					</li>				
+					<li><a  href="/">首页</a></li>
+					<li><a {{ (Request::path() == 'place' ? 'class=active' : '') }} href="{{ url('/place') }}">地名</a></li>
+					<li><a {{ (Request::path() == 'book' ? 'class=active' : '') }} href="{{ url('/book') }}">北京话文献</a></li>
+					<li><a {{ (strpos(Request::path(),'chant')!==false ? 'class=active' : '') }} href="{{ url('/chant') }}">吟诵</a></li>
+					<li><a {{ (Request::path() == 'poem' ? 'class=active' : '') }} href="{{ url('/poem') }}">清代御诗</a></li>
+					<li><a {{ (Request::path() == 'dict' ? 'class=active' : '') }} href="{{ url('/dict') }}">土语词典</a></li>
+					<li><a {{ (Request::path() == 'english' ? 'class=active' : '') }} href="{{ url('/english') }}">外语</a></li>
+					<li><a {{ (Request::path() == 'oral' ? 'class=active' : '') }} href="{{ url('/oral') }}">口传文化</a></li>
+					<li><a {{ (Request::path() == 'oldbeijing' ? 'class=active' : '') }} href="{{ url('/oldbeijing') }}">话说老北京</a></li>
 				</ul>
 	        </div>
         </div>
@@ -650,9 +560,7 @@
 	<div class="wrapper" id="panel" style="width:100%">
 		<div id="theSidebar" class="sidebar">
 			<div class="logo">
-				<a href="/">
-					<img src="{{ asset('/assets/img/icon/logo.png') }}">
-				</a>
+				<a href="/"><img src="{{ asset('/assets/img/icon/logo.png') }}"></a>
 			</div>
 			
 			<div id="search">
@@ -758,6 +666,45 @@
 		var grid__item = $('.grid__item');
 		var length = grid__item.length;
 		var where = ['place','book','chant','poem','dict','english','oral','oldbeijing'];
+		var ul = $('nav>ul>ul.pagination');
+		var lis = ul.children();
+		if( lis.length > 7){
+			var lisLength = lis.length,
+				paginationLi = ul[0].querySelector("li.active"),
+				paginationLiIndex = +paginationLi.children[0].innerHTML,
+				paginationFirst = lis[1],
+				paginationFirstIndex = +lis[1].children[0].innerHTML,
+				paginationLast = lis[lisLength - 2],
+				paginationLastIndex = +lis[lisLength - 2].children[0].innerHTML;
+				
+			if(paginationLiIndex == 2 || paginationLiIndex == 3 || paginationLiIndex == 1){
+				lis[4].children[0].innerHTML = "...";
+				lis[4].children[0].classList.add('disabled');
+				$(lis).each(function(index, ele){
+					if (index > 4 && index < lisLength - 2) {
+						$(ele).css("display", "none");	
+					}
+				});
+			}else if(paginationLiIndex == paginationLastIndex - 1 || paginationLiIndex == paginationLastIndex - 2 || paginationLiIndex == paginationLastIndex){
+				lis[2].children[0].innerHTML = "...";
+				lis[2].children[0].classList.add('disabled');
+				$(lis).each(function(index, ele){
+					if (index > 2 && index < lisLength - 4){
+						$(ele).css("display", "none");	
+					}
+				});
+			}else{
+				lis[2].children[0].innerHTML = "...";
+				lis[2].children[0].classList.add('disabled');
+				$(lis).each(function(index, ele){
+					if (index > 2 && index < lisLength - 3 && !$(ele).hasClass("active") ) {
+						$(ele).css("display", "none");
+					}
+				});
+				lis[lisLength - 3].children[0].innerHTML = "...";
+				lis[lisLength - 3].children[0].classList.add('disabled');
+			}
+		}
 	</script>
 	
 	<script src="{{ asset('/js/classie-places.js')}}"></script>
