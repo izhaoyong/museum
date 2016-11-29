@@ -701,9 +701,22 @@
 			visibility: hidden;
 		}
 
-		.tips>h3{
+		.tips>.figcaption{
 			width: 30%;
+			max-height: 30%;
 			color: black;
+		}
+
+		.tips>.figcaption>p{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: 768px){
+			.tips>.figcaption>p{
+				font-size: 16px;
+			}			
 		}
 
 		.tips>button{
@@ -713,7 +726,9 @@
 	</style>
 
 	<div class="tips">
-		<h3>我们现在参观的是吟诵子馆，吟诵是指对北京话/普通话诗文吟诵研究，主要以视频的形式展示北京话吟诵和普通话诗文的吟诵资源。资源共分为四个部分：文献论文，北京话吟诵，其他方言吟诵及吟诵教学。...</h3>
+		<div class="figcaption">
+			<p>我们现在参观的是吟诵子馆，吟诵是指对北京话/普通话诗文吟诵研究，主要以视频的形式展示北京话吟诵和普通话诗文的吟诵资源。资源共分为四个部分：文献论文，北京话吟诵，其他方言吟诵及吟诵教学。...</p>
+		</div>
 		<button class="know">知道了</button>
 	</div>
 
@@ -1244,6 +1259,14 @@
 					$('.tips').css('visibility','visible');
 					sessionStorage.setItem('path',path);
 				}
+
+				$(".figcaption").each(function(i){
+				    var divH = $(this).height();
+				    var $p = $("p", $(this)).eq(0);
+				    while ($p.outerHeight() > divH) {
+				        $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+				    };
+				});
 			});
 		})();
     </script>

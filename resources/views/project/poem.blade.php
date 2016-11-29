@@ -485,9 +485,22 @@
 			visibility: hidden;
 		}
 
-		.tips>h3{
+		.tips>.figcaption{
 			width: 30%;
+			max-height: 30%;
 			color: black;
+		}
+
+		.tips>.figcaption>p{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: 768px){
+			.tips>.figcaption>p{
+				font-size: 16px;
+			}			
 		}
 
 		.tips>button{
@@ -497,7 +510,9 @@
 	</style>
 
 	<div class="tips">
-		<h3>我们现在参观的是清代御诗子馆，清代御诗子馆子馆主要是对北京御制三山五园诗集数据库建设与研究，包括对北京皇家园林、名园、清代帝王御制三山五园诗集的数据收集和建设。展示的内容包括标题、诗作、注释、年代、作者、以及图片等。...</h3>
+		<div class="figcaption">
+			<p>我们现在参观的是清代御诗子馆，清代御诗子馆子馆主要是对北京御制三山五园诗集数据库建设与研究，包括对北京皇家园林、名园、清代帝王御制三山五园诗集的数据收集和建设。展示的内容包括标题、诗作、注释、年代、作者、以及图片等。...</p>
+		</div>
 		<button class="know">知道了</button>
 	</div>
 
@@ -904,6 +919,14 @@
 					$('.tips').css('visibility','visible');
 					sessionStorage.setItem('path',path) ;
 				}
+
+				$(".figcaption").each(function(i){
+				    var divH = $(this).height();
+				    var $p = $("p", $(this)).eq(0);
+				    while ($p.outerHeight() > divH) {
+				        $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+				    };
+				});
 			});
 		})();
     </script>

@@ -494,9 +494,22 @@
 			visibility: hidden;
 		}
 
-		.tips>h3{
+		.tips>.figcaption{
 			width: 30%;
+			max-height: 30%;
 			color: black;
+		}
+
+		.tips>.figcaption>p{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: 768px){
+			.tips>.figcaption>p{
+				font-size: 16px;
+			}			
 		}
 
 		.tips>button{
@@ -506,7 +519,10 @@
 	</style>
 
 	<div class="tips">
-		<h3>我们现在参观的是外语子馆，外语子馆主要是对北京外语使用情况进行研究。项目收集包含汉语和对应英语的指示信息，如地铁指示牌、景区导引等，并收集照片，记录地点。...</h3>
+		<div class="figcaption">
+			<p>我们现在参观的是外语子馆，外语子馆主要是对北京外语使用情况进行研究。项目收集包含汉语和对应英语的指示信息，如地铁指示牌、景区导引等，并收集照片，记录地点。...</p>
+		</div>
+		<p>我们现在参观的是外语子馆，外语子馆主要是对北京外语使用情况进行研究。项目收集包含汉语和对应英语的指示信息，如地铁指示牌、景区导引等，并收集照片，记录地点。...</p>
 		<button class="know">知道了</button>
 	</div>
 
@@ -998,6 +1014,14 @@
 					$('.tips').css('visibility','visible');
 					sessionStorage.setItem('path',path) ;
 				}
+
+				$(".figcaption").each(function(i){
+				    var divH = $(this).height();
+				    var $p = $("p", $(this)).eq(0);
+				    while ($p.outerHeight() > divH) {
+				        $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+				    };
+				});
 			});
 		})();
     </script>

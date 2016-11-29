@@ -483,9 +483,22 @@
 			visibility: hidden;
 		}
 
-		.tips>h3{
+		.tips>.figcaption{
 			width: 30%;
+			max-height: 30%;
 			color: black;
+		}
+
+		.tips>.figcaption>p{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: 768px){
+			.tips>.figcaption>p{
+				font-size: 16px;
+			}			
 		}
 
 		.tips>button{
@@ -502,7 +515,9 @@
 	</style>
 
 	<div class="tips">
-		<h3>我们现在参观的是文献子馆，子馆是对北京话研究历史文献叙录及目录进行归纳和整理。项目收集北京话研究历史文献的叙录及目录，进行资源建设与研究。共包括三个部分，分别是：直接记录现当代北京方言土语或口语的辞书和准辞书；用北京话撰写的文学作品中的语汇辞书和语汇索引书；清代国家机关主持编撰的多体《清文鉴》类辞书和准辞书的现代整理本。...</h3>
+		<div class="figcaption">
+			<p>我们现在参观的是文献子馆，子馆是对北京话研究历史文献叙录及目录进行归纳和整理。项目收集北京话研究历史文献的叙录及目录，进行资源建设与研究。共包括三个部分，分别是：直接记录现当代北京方言土语或口语的辞书和准辞书；用北京话撰写的文学作品中的语汇辞书和语汇索引书；清代国家机关主持编撰的多体《清文鉴》类辞书和准辞书的现代整理本。...</p>
+		</div>
 		<button class="know">知道了</button>
 	</div>
 
@@ -924,6 +939,14 @@
 					$('.tips').css('visibility','visible');
 					sessionStorage.setItem('path',path) ;
 				}
+
+				$(".figcaption").each(function(i){
+				    var divH = $(this).height();
+				    var $p = $("p", $(this)).eq(0);
+				    while ($p.outerHeight() > divH) {
+				        $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+				    };
+				});
 			});
 		})();
     </script>

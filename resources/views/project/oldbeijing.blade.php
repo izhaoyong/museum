@@ -497,9 +497,22 @@
 			visibility: hidden;
 		}
 
-		.tips>h3{
+		.tips>.figcaption{
 			width: 30%;
+			max-height: 30%;
 			color: black;
+		}
+
+		.tips>.figcaption>p{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: 768px){
+			.tips>.figcaption>p{
+				font-size: 16px;
+			}			
 		}
 
 		.tips>button{
@@ -516,7 +529,9 @@
 	</style>
 
 	<div class="tips">
-		<h3>我们现在参观的是话说老北京子馆，话说老北京主要是对北京语言文化图解词典编创。本项目以《话说老北京》这部京味图画书为蓝本，整理成为一部能听能看的老北京故事图鉴，通过图鉴记录过去的人玩什么、吃什么、穿什么，街道上卖什么，流行什么。...</h3>
+		<div class="figcaption">
+			<p>我们现在参观的是话说老北京子馆，话说老北京主要是对北京语言文化图解词典编创。本项目以《话说老北京》这部京味图画书为蓝本，整理成为一部能听能看的老北京故事图鉴，通过图鉴记录过去的人玩什么、吃什么、穿什么，街道上卖什么，流行什么。...</p>
+		</div>
 		<button class="know">知道了</button>
 	</div>
 
@@ -1012,6 +1027,14 @@
 					$('.tips').css('visibility','visible');
 					sessionStorage.setItem('path',path) ;
 				}
+
+				$(".figcaption").each(function(i){
+				    var divH = $(this).height();
+				    var $p = $("p", $(this)).eq(0);
+				    while ($p.outerHeight() > divH) {
+				        $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+				    };
+				});
 			});
 		})();
     </script>

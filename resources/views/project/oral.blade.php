@@ -506,9 +506,22 @@
 			visibility: hidden;
 		}
 
-		.tips>h3{
+		.tips>.figcaption{
 			width: 30%;
+			max-height: 30%;
 			color: black;
+		}
+
+		.tips>.figcaption>p{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: 768px){
+			.tips>.figcaption>p{
+				font-size: 16px;
+			}			
 		}
 
 		.tips>button{
@@ -518,7 +531,9 @@
 	</style>
 
 	<div class="tips">
-		<h3>我们现在参观的是口传文化子馆，口传文化子馆是对北京地域口传文化进行研究。项目以数名土生土长的北京著名老艺人为采集对象，以老北京人聚居的城区为采集布点，观察、记录、描述、分析北京商业叫卖。...</h3>
+		<div class="figcaption">
+			<p>我们现在参观的是口传文化子馆，口传文化子馆是对北京地域口传文化进行研究。项目以数名土生土长的北京著名老艺人为采集对象，以老北京人聚居的城区为采集布点，观察、记录、描述、分析北京商业叫卖。...</p>
+		</div>
 		<button class="know">知道了</button>
 	</div>
 
@@ -1016,6 +1031,14 @@
 					$('.tips').css('visibility','visible');
 					sessionStorage.setItem('path',path) ;
 				}
+
+				$(".figcaption").each(function(i){
+				    var divH = $(this).height();
+				    var $p = $("p", $(this)).eq(0);
+				    while ($p.outerHeight() > divH) {
+				        $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+				    };
+				});
 			});
 		})();
     </script>

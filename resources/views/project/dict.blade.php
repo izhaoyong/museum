@@ -535,9 +535,22 @@
 			visibility: hidden;
 		}
 
-		.tips>h3{
+		.tips>.figcaption{
 			width: 30%;
+			max-height: 30%;
 			color: black;
+		}
+
+		.tips>.figcaption>p{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: 768px){
+			.tips>.figcaption>p{
+				font-size: 16px;
+			}			
 		}
 
 		.tips>button{
@@ -547,7 +560,10 @@
 	</style>
 
 	<div class="tips">
-		<h3>我们现在参观的是土语子馆，土语是对北京语言资源数字博物馆的建设。方言土语承载着传统文化，过去的节庆礼仪有哪些，贩夫走卒、市井街道是什么样的，太太小姐的吃穿用度都有哪些，随着时间的推移，这些过去的事物都在渐渐消失，方言土语词正在被今天的新生词语所取代，为了方言土语能够以声音、图像、释义相结合的方式呈现给大众，邀请到文化名人解读、专业人士注音、名校硕博团队写作，共同收集制作本部分内容。...</h3>
+		<div class="figcaption">
+			<p>我们现在参观的是土语子馆，土语是对北京语言资源数字博物馆的建设。方言土语承载着传统文化，过去的节庆礼仪有哪些，贩夫走卒、市井街道是什么样的，太太小姐的吃穿用度都有哪些，随着时间的推移，这些过去的事物都在渐渐消失，方言土语词正在被今天的新生词语所取代，为了方言土语能够以声音、图像、释义相结合的方式呈现给大众，邀请到文化名人解读、专业人士注音、名校硕博团队写作，共同收集制作本部分内容。...</p>
+		</div>
+
 		<button class="know">知道了</button>
 	</div>
 
@@ -1050,6 +1066,14 @@
 					$('.tips').css('visibility','visible');
 					sessionStorage.setItem('path',path) ;
 				}
+
+				$(".figcaption").each(function(i){
+				    var divH = $(this).height();
+				    var $p = $("p", $(this)).eq(0);
+				    while ($p.outerHeight() > divH) {
+				        $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+				    };
+				});
 			});
 		})();
     </script>

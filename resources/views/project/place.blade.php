@@ -492,9 +492,22 @@
 			visibility: hidden;
 		}
 
-		.tips>h3{
+		.tips>.figcaption{
 			width: 30%;
+			max-height: 30%;
 			color: black;
+		}
+
+		.tips>.figcaption>p{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 24px;
+		}
+
+		@media screen and (max-width: 768px){
+			.tips>.figcaption>p{
+				font-size: 16px;
+			}			
 		}
 
 		.tips>button{
@@ -504,7 +517,9 @@
 	</style>
 
 	<div class="tips">
-		<h3>我们现在参观的是地名子馆，这个馆中收集了北京市各个管辖区的地名，并对这些地名进行相应的历史典故介绍，同时附上每个地名对应的北京话发音和普通话发音。项目累计条目及照片2千余条。...</h3>
+		<div class="figcaption">
+			<p>我们现在参观的是地名子馆，这个馆中收集了北京市各个管辖区的地名，并对这些地名进行相应的历史典故介绍，同时附上每个地名对应的北京话发音和普通话发音。项目累计条目及照片2千余条。...</p>
+		</div>
 		<button class="know">知道了</button>
 	</div>
 
@@ -912,6 +927,14 @@
 						$('.tips').css('visibility','visible');
 						sessionStorage.setItem('path',path) ;
 					}
+
+					$(".figcaption").each(function(i){
+					    var divH = $(this).height();
+					    var $p = $("p", $(this)).eq(0);
+					    while ($p.outerHeight() > divH) {
+					        $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+					    };
+					});
 				});
 			})();
     </script>
